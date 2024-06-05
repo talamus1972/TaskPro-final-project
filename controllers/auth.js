@@ -15,8 +15,6 @@ export const register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
-    console.log("Register request received:", { name, email });
-
     const user = await User.findOne({ email });
 
     if (user) {
@@ -119,9 +117,9 @@ export const login = async (req, res, next) => {
       throw HttpError(401, "Email or password is wrong");
     }
 
-    if (!user.verify) {
-      throw HttpError(401, "Email not verified");
-    }
+    // if (!user.verify) {
+    //   throw HttpError(401, "Email not verified");
+    // }
 
     const passwordCompare = await bcrypt.compare(password, user.password);
     if (!passwordCompare) {
@@ -138,7 +136,6 @@ export const login = async (req, res, next) => {
     res.json({
       token,
       email: user.email,
-      subscription: user.subscription,
     });
   } catch (error) {
     console.error("Error in login:", error);
