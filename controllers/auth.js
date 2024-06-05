@@ -109,7 +109,6 @@ export const resendVerifyEmail = async (req, res, next) => {
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log("Login request received:", { email });
 
     const user = await User.findOne({ email });
 

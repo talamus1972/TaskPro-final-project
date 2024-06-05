@@ -348,3 +348,9 @@ POST /auth/login 401 32 - 65.250 ms
 POST /auth/login 401 32 - 67.960 ms
 POST /auth/login 401 32 - 68.783 ms
 POST /auth/login 401 32 - 51.557 ms
+POST /auth/login 200 208 - 171.721 ms
+POST /users/register 404 29 - 1.019 ms
+POST /auth/register 400 34 - 3.131 ms
+POST /auth/register 409 26 - 40.338 ms
+POST /auth/register 201 27 - 849.583 ms
+POST /auth/login 200 209 - 199.501 ms

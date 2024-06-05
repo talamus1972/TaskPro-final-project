@@ -1,6 +1,5 @@
 import Joi from "joi";
 import { emailRegexp } from "../models/user.js";
-// import { genreList } from "../models/user.js";
 
 export const registerSchema = Joi.object({
   name: Joi.string().required(),
