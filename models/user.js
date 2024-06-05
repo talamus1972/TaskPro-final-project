@@ -1,12 +1,16 @@
 import { Schema, model } from "mongoose";
 import handleMongooseError from "../helpers/handleMongooseError.js";
 
-const genreList = ["starter", "pro", "business"];
+// const genreList = ["starter", "pro", "business"];
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 const userSchema = new Schema(
   {
+    name: {
+      type: String,
+      required: [true, "Name is required"],
+    },
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -17,11 +21,11 @@ const userSchema = new Schema(
       required: [true, "Email is required"],
       unique: true,
     },
-    subscription: {
-      type: String,
-      enum: genreList,
-      default: "starter",
-    },
+    // subscription: {
+    //   type: String,
+    //   enum: genreList,
+    //   default: "starter",
+    // },
     token: {
       type: String,
       default: null,
@@ -31,15 +35,16 @@ const userSchema = new Schema(
       default: null,
     },
     verify: {
-    type: Boolean,
-    default: false,
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      required: [true, "Verify token is required"],
+    },
   },
-  verificationToken: {
-    type: String,
-    required: [true, 'Verify token is required'],
-  },
-   
-  }, { versionKey: false, timestamps: true });
+  { versionKey: false, timestamps: true }
+);
 
 userSchema.post("save", handleMongooseError);
 
@@ -47,4 +52,4 @@ const User = model("user", userSchema);
 
 export default User;
 
-export { genreList, emailRegexp };
+export { emailRegexp };

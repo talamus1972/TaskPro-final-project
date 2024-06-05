@@ -13,7 +13,10 @@ const { SECRET_KEY, BASE_URL } = process.env;
 
 export const register = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
+
+    console.log("Register request received:", { name, email });
+
     const user = await User.findOne({ email });
 
     if (user) {
@@ -40,30 +43,38 @@ export const register = async (req, res, next) => {
 
     await sendEmail(verifyEmail);
 
-    res.status(201).json({ email: newUser.email, subscription: "starter" });
+    res.status(201).json({ email: newUser.email });
   } catch (error) {
     next(error);
   }
 };
 
-export const verifyEmail = async (req, res) => {
-  const { verificationToken } = req.params;
+export const verifyEmail = async (req, res, next) => {
+  try {
+    const { verificationToken } = req.params;
+    console.log("Verifying email with token:", verificationToken);
 
-  const user = await User.findOne({ verificationToken });
+    const user = await User.findOne({ verificationToken });
 
-  if (!user) {
-    throw HttpError(401, "Email not found");
+    if (!user) {
+      throw HttpError(401, "Email not found");
+    }
+
+    await User.findByIdAndUpdate(user._id, {
+      verify: true,
+      verificationToken: "",
+    });
+
+    res.json({
+      message: "Verification successful",
+    });
+  } catch (error) {
+    console.error("Error in verifyEmail:", error);
+    next(error);
   }
-  await User.findByIdAndUpdate(user._id, {
-    verify: true,
-    verificationToken: "",
-  });
-  res.json({
-    message: "Verification successful",
-  });
 };
 
-export const resendVerifyEmail = async (req, res) => {
+export const resendVerifyEmail = async (req, res, next) => {
   try {
     const { email } = req.body;
 
@@ -80,6 +91,7 @@ export const resendVerifyEmail = async (req, res) => {
     if (user.verify) {
       throw HttpError(400, "Verification has already been passed");
     }
+
     const verifyEmail = {
       to: email,
       subject: "Verify email",
@@ -91,6 +103,7 @@ export const resendVerifyEmail = async (req, res) => {
       message: "Verification email sent",
     });
   } catch (error) {
+    console.error("Error in resendVerifyEmail:", error);
     next(error);
   }
 };
@@ -98,7 +111,10 @@ export const resendVerifyEmail = async (req, res) => {
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log("Login request received:", { email });
+
     const user = await User.findOne({ email });
+
     if (!user) {
       throw HttpError(401, "Email or password is wrong");
     }
@@ -125,6 +141,7 @@ export const login = async (req, res, next) => {
       subscription: user.subscription,
     });
   } catch (error) {
+    console.error("Error in login:", error);
     next(error);
   }
 };
@@ -132,14 +149,17 @@ export const login = async (req, res, next) => {
 export const getCurrent = async (req, res, next) => {
   try {
     const { email, subscription } = req.user;
+
     if (!req.user) {
       return next(HttpError(401, "Not authorized"));
     }
+
     res.json({
       email,
       subscription,
     });
   } catch (error) {
+    console.error("Error in getCurrent:", error);
     next(error);
   }
 };
