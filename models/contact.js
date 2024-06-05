@@ -1,25 +1,27 @@
 import { Schema, model } from "mongoose";
 import { handleMongooseError } from "../helpers/index.js";
 
+const genreList = ["Without priority", "Low", "Medium", "High"];
+
 const contactSchema = new Schema(
   {
-    name: {
+    title: {
       type: String,
       required: [true, "Set name for contact"],
     },
-    email: {
+    description: {
       type: String,
+      required: [true, "Set description for contact"],
     },
-    phone: {
+    subscription: {
       type: String,
+      enum: genreList,
+      default: "Without priority",
+      required: [true, "Set subscription for contact"],
     },
-    favorite: {
-      type: Boolean,
-      default: false,
-    },
-     owner: {
+    owner: {
       type: Schema.Types.ObjectId,
-      ref: 'user',
+      ref: "user",
       required: true,
     },
   },
