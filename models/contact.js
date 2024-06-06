@@ -7,7 +7,7 @@ const contactSchema = new Schema(
   {
     title: {
       type: String,
-      required: [true, "Set name for contact"],
+      required: [true, "Set title for contact"],
     },
     description: {
       type: String,
