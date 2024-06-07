@@ -354,3 +354,5 @@ POST /auth/register 400 34 - 3.131 ms
 POST /auth/register 409 26 - 40.338 ms
 POST /auth/register 201 27 - 849.583 ms
 POST /auth/login 200 209 - 199.501 ms
+POST /api/contacts/ 400 120 - 429.039 ms
+POST /api/contacts/ 201 236 - 149.440 ms
