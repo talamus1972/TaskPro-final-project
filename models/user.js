@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import handleMongooseError from "../helpers/handleMongooseError.js";
 
-// const genreList = ["starter", "pro", "business"];
+const themeList = ["dark", "light", "violet"];
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -21,11 +21,11 @@ const userSchema = new Schema(
       required: [true, "Email is required"],
       unique: true,
     },
-    // subscription: {
-    //   type: String,
-    //   enum: genreList,
-    //   default: "starter",
-    // },
+    theme: {
+      type: String,
+      enum: themeList,
+      default: "dark",
+    },
     token: {
       type: String,
       default: null,

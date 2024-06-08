@@ -1,10 +1,12 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import contactsRouter from "./routes/contactsRouter.js";
+import cardsRouter from "./routes/cardsRouter.js";
 import path from "node:path";
 import { createWriteStream } from "node:fs";
 import authRouter from "./routes/auth.js";
+import boardsRouter from "./routes/boardsRouter.js";
+import columnsRouter from "./routes/columnsRouter.js";
 
 const app = express();
 
@@ -16,8 +18,10 @@ app.use(morgan("tiny", { stream: accessLogStream }));
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/contacts", contactsRouter);
 app.use("/auth", authRouter);
+app.use("/api/board", boardsRouter);
+app.use("/api/column", columnsRouter);
+app.use("/api/cards", cardsRouter);
 
 app.use(express.static("public"));
 

@@ -2,7 +2,7 @@ import { HttpError } from "../helpers/index.js";
 
 import Contact from "../models/contact.js";
 
-const getAllContacts = async (req, res, next) => {
+const getAllCards = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { page = 1, limit = 20 } = req.query;
@@ -17,7 +17,7 @@ const getAllContacts = async (req, res, next) => {
   }
 };
 
-const getOneContact = async (req, res, next) => {
+const getOneCard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { id: contactId } = req.params;
@@ -31,7 +31,7 @@ const getOneContact = async (req, res, next) => {
   }
 };
 
-const createContact = async (req, res, next) => {
+const createCard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const result = await Contact.create({ ...req.body, owner });
@@ -41,7 +41,7 @@ const createContact = async (req, res, next) => {
   }
 };
 
-const deleteContact = async (req, res, next) => {
+const deleteCard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { id: contactId } = req.params;
@@ -55,7 +55,7 @@ const deleteContact = async (req, res, next) => {
   }
 };
 
-const updateContact = async (req, res, next) => {
+const updateCard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { id: contactId } = req.params;
@@ -73,7 +73,7 @@ const updateContact = async (req, res, next) => {
   }
 };
 
-const updateStatusContact = async (req, res, next) => {
+const updateStatusCard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { id: contactId } = req.params;
@@ -91,7 +91,7 @@ const updateStatusContact = async (req, res, next) => {
   }
 };
 
-const getFavoriteContacts = async (req, res, next) => {
+const getFavoriteCard = async (req, res, next) => {
   try {
     const { favorite } = req.query;
     let filter = {};
@@ -109,11 +109,11 @@ const getFavoriteContacts = async (req, res, next) => {
 };
 
 export {
-  getAllContacts,
-  getOneContact,
-  createContact,
-  deleteContact,
-  updateContact,
-  updateStatusContact,
-  getFavoriteContacts,
+  getAllCards,
+  getOneCard,
+  createCard,
+  deleteCard,
+  updateCard,
+  updateStatusCard,
+  getFavoriteCard,
 };
