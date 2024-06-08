@@ -482,3 +482,16 @@ POST /auth/logout/ 401 28 - 79.555 ms
 POST /api/board/ 401 28 - 37.285 ms
 POST /auth/login 200 296 - 170.126 ms
 POST /auth/logout/ 200 46 - 85.454 ms
+POST /api/board/ 401 28 - 73.519 ms
+PATCH /api/board/ 404 29 - 11.796 ms
+PATCH /api/board/66648c6b54e018b33c4e38d2 401 28 - 66.511 ms
+POST /auth/register 409 26 - 45.343 ms
+POST /auth/register 201 27 - 785.798 ms
+POST /auth/login 200 296 - 178.710 ms
+POST /api/board/ 400 34 - 50.916 ms
+POST /api/board/ 201 225 - 100.198 ms
+POST /api/board/ 201 225 - 84.853 ms
+GET /api/board/66643548013b885a6e3a1f41 404 23 - 73.616 ms
+GET /api/board/6664e81c92068ed70bd839ff 200 225 - 78.550 ms
+PATCH /api/board/6664e81c92068ed70bd839ff 401 28 - 39.546 ms
+PATCH /api/board/6664e81c92068ed70bd839ff 200 226 - 97.018 ms

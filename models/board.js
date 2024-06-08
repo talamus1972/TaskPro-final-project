@@ -14,6 +14,8 @@ const iconsList = [
   "hexagon",
 ];
 
+const themeList = ["dark", "light", "violet"];
+
 const boardSchema = new Schema(
   {
     title: {
@@ -28,6 +30,11 @@ const boardSchema = new Schema(
     },
     background: {
       type: String,
+    },
+    theme: {
+      type: String,
+      enum: themeList,
+      default: "dark",
     },
     owner: {
       type: Schema.Types.ObjectId,
