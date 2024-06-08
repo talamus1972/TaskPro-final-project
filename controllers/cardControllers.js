@@ -1,13 +1,13 @@
 import { HttpError } from "../helpers/index.js";
 
-import Contact from "../models/contact.js";
+import Card from "../models/card.js";
 
 const getAllCards = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { page = 1, limit = 20 } = req.query;
     const skip = (page - 1) * limit;
-    const result = await Contact.find({ owner }, "-createdAt -updatedAt", {
+    const result = await Card.find({ owner }, "-createdAt -updatedAt", {
       skip,
       limit,
     }).populate("owner", "email");
@@ -21,7 +21,7 @@ const getOneCard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { id: contactId } = req.params;
-    const result = await Contact.findOne({ _id: contactId, owner });
+    const result = await Card.findOne({ _id: contactId, owner });
     if (!result) {
       throw HttpError(404, "Not found");
     }
@@ -34,7 +34,7 @@ const getOneCard = async (req, res, next) => {
 const createCard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
-    const result = await Contact.create({ ...req.body, owner });
+    const result = await Card.create({ ...req.body, owner });
     res.status(201).json(result);
   } catch (error) {
     next(error);
@@ -45,7 +45,7 @@ const deleteCard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { id: contactId } = req.params;
-    const result = await Contact.findOneAndDelete({ _id: contactId, owner });
+    const result = await Card.findOneAndDelete({ _id: contactId, owner });
     if (!result) {
       throw HttpError(404, "Not Found");
     }
@@ -59,7 +59,7 @@ const updateCard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { id: contactId } = req.params;
-    const result = await Contact.findOneAndUpdate(
+    const result = await Card.findOneAndUpdate(
       { _id: contactId, owner },
       req.body,
       { new: true }
@@ -77,7 +77,7 @@ const updateStatusCard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { id: contactId } = req.params;
-    const result = await Contact.findOneAndUpdate(
+    const result = await Card.findOneAndUpdate(
       { _id: contactId, owner },
       req.body,
       { new: true }
@@ -91,7 +91,7 @@ const updateStatusCard = async (req, res, next) => {
   }
 };
 
-const getFavoriteCard = async (req, res, next) => {
+const getFavoriteCards = async (req, res, next) => {
   try {
     const { favorite } = req.query;
     let filter = {};
@@ -100,7 +100,7 @@ const getFavoriteCard = async (req, res, next) => {
       filter = { favorite: true };
     }
 
-    const contacts = await Contact.find(filter);
+    const contacts = await Card.find(filter);
 
     res.json(contacts);
   } catch (error) {
@@ -115,5 +115,5 @@ export {
   deleteCard,
   updateCard,
   updateStatusCard,
-  getFavoriteCard,
+  getFavoriteCards,
 };

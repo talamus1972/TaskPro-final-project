@@ -6,7 +6,7 @@ import {
   createCard,
   updateCard,
   updateStatusCard,
-  getFavoriteCard,
+  getFavoriteCards,
 } from "../controllers/cardControllers.js";
 
 import { isValidId, validateBody, authenticate } from "../middlewares/index.js";
@@ -21,7 +21,7 @@ const cardsRouter = express.Router();
 
 cardsRouter.get("/", authenticate, getAllCards);
 
-cardsRouter.get("/", authenticate, getFavoriteCard);
+cardsRouter.get("/", authenticate, getFavoriteCards);
 
 cardsRouter.get("/:id", authenticate, isValidId, getOneCard);
 
@@ -42,7 +42,7 @@ cardsRouter.patch(
   authenticate,
   isValidId,
   validateBody(updateCardStatusSchema),
-  getFavoriteCard
+  updateStatusCard
 );
 
 export default cardsRouter;

@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
 import { handleMongooseError } from "../helpers/index.js";
 
-const genreList = ["Without priority", "Low", "Medium", "High"];
+const priorityList = ["Without priority", "Low", "Medium", "High"];
 
-const contactSchema = new Schema(
+const cardSchema = new Schema(
   {
     title: {
       type: String,
@@ -13,9 +13,9 @@ const contactSchema = new Schema(
       type: String,
       required: [true, "Set description for contact"],
     },
-    subscription: {
+    pryority: {
       type: String,
-      enum: genreList,
+      enum: priorityList,
       default: "Without priority",
       required: [true, "Set subscription for contact"],
     },
@@ -28,8 +28,8 @@ const contactSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-contactSchema.post("save", handleMongooseError);
+cardSchema.post("save", handleMongooseError);
 
-const Contact = model("contact", contactSchema);
+const Card = model("card", cardSchema);
 
-export default Contact;
+export default Card;

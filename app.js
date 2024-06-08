@@ -21,7 +21,7 @@ app.use(express.json());
 app.use("/auth", authRouter);
 app.use("/api/board", boardsRouter);
 app.use("/api/column", columnsRouter);
-app.use("/api/cards", cardsRouter);
+app.use("/api/card", cardsRouter);
 
 app.use(express.static("public"));
 

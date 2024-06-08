@@ -3,7 +3,7 @@ import Joi from "joi";
 export const createCardSchema = Joi.object({
   title: Joi.string().required(),
   description: Joi.string().required(),
-  subscription: Joi.string().required(),
+  pryority: Joi.string().required(),
 });
 
 export const updateCardSchema = Joi.object({
