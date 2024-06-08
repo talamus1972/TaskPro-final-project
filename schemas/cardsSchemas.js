@@ -17,6 +17,10 @@ export const updateCardSchema = Joi.object({
   .min(1)
   .message("Body must have at least one field");
 
+export const moveCardSchema = Joi.object({
+  columnId: Joi.string().required(),
+});
+
 export const updateCardStatusSchema = Joi.object({
   favorite: Joi.boolean().required(),
 });

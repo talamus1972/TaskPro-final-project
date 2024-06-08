@@ -5,6 +5,7 @@ import {
   deleteCard,
   createCard,
   updateCard,
+  moveCard,
   updateStatusCard,
   getFavoriteCards,
 } from "../controllers/cardControllers.js";
@@ -14,6 +15,7 @@ import { isValidId, validateBody, authenticate } from "../middlewares/index.js";
 import {
   createCardSchema,
   updateCardSchema,
+  moveCardSchema,
   updateCardStatusSchema,
 } from "../schemas/cardsSchemas.js";
 
@@ -30,6 +32,14 @@ cardsRouter.put(
 );
 
 cardsRouter.delete("/:id", authenticate, isValidId, deleteCard);
+
+cardsRouter.patch(
+  "/:id/move",
+  authenticate,
+  isValidId,
+  validateBody(moveCardSchema),
+  moveCard
+);
 
 //============================================//
 

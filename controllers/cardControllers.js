@@ -55,11 +55,35 @@ export const deleteCard = async (req, res, next) => {
   }
 };
 
+export const moveCard = async (req, res, next) => {
+  try {
+    const { id: cardId } = req.params;
+    const { columnId } = req.body;
 
+    if (!isValidObjectId(columnId)) {
+      throw HttpError(400, "Invalid Column ID");
+    }
 
+    const columnExists = await Column.findById(columnId);
+    if (!columnExists) {
+      throw HttpError(404, "Column not found");
+    }
 
+    const result = await Card.findByIdAndUpdate(
+      cardId,
+      { column: columnId },
+      { new: true }
+    );
 
+    if (!result) {
+      throw HttpError(404, "Card not found");
+    }
 
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
 //======================================================================================//
 
