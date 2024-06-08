@@ -144,6 +144,17 @@ export const login = async (req, res, next) => {
   }
 };
 
+export const logout = async (req, res, next) => {
+  try {
+    const { _id } = req.user;
+    await User.findByIdAndUpdate(_id, { token: "" });
+    res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+//===============================================//
+
 export const getCurrent = async (req, res, next) => {
   try {
     const { email, subscription } = req.user;
@@ -158,16 +169,6 @@ export const getCurrent = async (req, res, next) => {
     });
   } catch (error) {
     console.error("Error in getCurrent:", error);
-    next(error);
-  }
-};
-
-export const logout = async (req, res, next) => {
-  try {
-    const { _id } = req.user;
-    await User.findByIdAndUpdate(_id, { token: "" });
-    res.status(204).end();
-  } catch (error) {
     next(error);
   }
 };

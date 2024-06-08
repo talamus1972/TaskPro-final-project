@@ -26,15 +26,17 @@ const authRouter = express.Router();
 
 authRouter.post("/register", validateBody(registerSchema), register);
 
+authRouter.post("/login", validateBody(loginSchema), login);
+
+authRouter.post("/logout", authenticate, logout);
+
+//============================================//
+
 authRouter.get("/verify/:verificationToken", verifyEmail);
 
 authRouter.post("/verify", validateBody(emailSchema), resendVerifyEmail);
 
-authRouter.post("/login", validateBody(loginSchema), login);
-
 authRouter.get("/current", authenticate, getCurrent);
-
-authRouter.post("/logout", authenticate, logout);
 
 authRouter.patch(
   "/:id/subscription",
