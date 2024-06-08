@@ -7,21 +7,24 @@ const cardSchema = new Schema(
   {
     title: {
       type: String,
-      required: [true, "Set title for contact"],
+      required: [true, "Set title for card"],
     },
     description: {
       type: String,
-      required: [true, "Set description for contact"],
+      required: [true, "Set description for card"],
     },
-    pryority: {
+    priority: {
       type: String,
       enum: priorityList,
       default: "Without priority",
-      required: [true, "Set subscription for contact"],
     },
-    owner: {
+    deadline: {
+      type: String,
+      required: [true, "Set deadline for card"],
+    },
+    column: {
       type: Schema.Types.ObjectId,
-      ref: "user",
+      ref: "column",
       required: true,
     },
   },
@@ -29,6 +32,8 @@ const cardSchema = new Schema(
 );
 
 cardSchema.post("save", handleMongooseError);
+
+
 
 const Card = model("card", cardSchema);
 

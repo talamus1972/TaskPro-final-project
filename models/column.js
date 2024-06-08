@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { handleMongooseError } from "../helpers/index.js";
+import Card from "./card.js";
 
 const columnSchema = new Schema(
   {
@@ -17,6 +18,12 @@ const columnSchema = new Schema(
 );
 
 columnSchema.post("save", handleMongooseError);
+
+columnSchema.pre("findOneAndDelete", async function (next) {
+  const columnId = this.getQuery()._id;
+  await Card.deleteMany({ column: columnId });
+  next();
+});
 
 const Column = model("column", columnSchema);
 

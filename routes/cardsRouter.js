@@ -19,14 +19,6 @@ import {
 
 const cardsRouter = express.Router();
 
-cardsRouter.get("/", authenticate, getAllCards);
-
-cardsRouter.get("/", authenticate, getFavoriteCards);
-
-cardsRouter.get("/:id", authenticate, isValidId, getOneCard);
-
-cardsRouter.delete("/:id", authenticate, isValidId, deleteCard);
-
 cardsRouter.post("/", authenticate, validateBody(createCardSchema), createCard);
 
 cardsRouter.put(
@@ -36,6 +28,16 @@ cardsRouter.put(
   validateBody(updateCardSchema),
   updateCard
 );
+
+cardsRouter.delete("/:id", authenticate, isValidId, deleteCard);
+
+//============================================//
+
+cardsRouter.get("/", authenticate, getAllCards);
+
+cardsRouter.get("/", authenticate, getFavoriteCards);
+
+cardsRouter.get("/:id", authenticate, isValidId, getOneCard);
 
 cardsRouter.patch(
   "/:id/favorite",
