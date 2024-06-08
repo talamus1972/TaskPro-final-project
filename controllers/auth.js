@@ -148,11 +148,12 @@ export const logout = async (req, res, next) => {
   try {
     const { _id } = req.user;
     await User.findByIdAndUpdate(_id, { token: "" });
-    res.status(204).end();
+    res.status(200).json({ message: "You have successfully logged out" });
   } catch (error) {
     next(error);
   }
 };
+
 //===============================================//
 
 export const getCurrent = async (req, res, next) => {
