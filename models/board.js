@@ -20,7 +20,7 @@ const boardSchema = new Schema(
       type: String,
       required: [true, "Set title for board"],
     },
-    icons: {
+    icon: {
       type: String,
       enum: iconsList,
       default: "project",

@@ -430,3 +430,13 @@ POST /api/card/ 201 242 - 125.230 ms
 POST /api/card/ 201 242 - 117.169 ms
 DELETE /api/board/666488fe892e3334655deb7a 500 33 - 83.472 ms
 DELETE /api/board/666488fe892e3334655deb7a 200 28 - 201.889 ms
+POST /api/board/ 201 196 - 104.931 ms
+POST /api/board/ 201 196 - 82.163 ms
+POST /api/column/ 201 164 - 111.621 ms
+POST /api/card/ 201 242 - 140.626 ms
+PATCH /api/card/66648cc754e018b33c4e38dd/move 401 28 - 1.612 ms
+PATCH /api/card/66648cc754e018b33c4e38dd/move 200 242 - 126.171 ms
+POST /api/board/ 201 276 - 88.090 ms
+POST /api/board/ 201 275 - 110.074 ms
+POST /auth/register 201 27 - 820.323 ms
+POST /auth/login 200 295 - 139.214 ms
