@@ -495,3 +495,9 @@ GET /api/board/66643548013b885a6e3a1f41 404 23 - 73.616 ms
 GET /api/board/6664e81c92068ed70bd839ff 200 225 - 78.550 ms
 PATCH /api/board/6664e81c92068ed70bd839ff 401 28 - 39.546 ms
 PATCH /api/board/6664e81c92068ed70bd839ff 200 226 - 97.018 ms
+GET / 404 29 - 6.495 ms
+GET /favicon.ico 404 29 - 1.898 ms
+GET /api-docs 404 29 - 0.514 ms
+GET /api-docs 404 29 - 0.799 ms
+GET /api-docs 404 29 - 3.149 ms
+GET /favicon.ico 404 29 - 0.551 ms

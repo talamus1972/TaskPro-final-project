@@ -8,10 +8,15 @@ import authRouter from "./routes/auth.js";
 import boardsRouter from "./routes/boardsRouter.js";
 import columnsRouter from "./routes/columnsRouter.js";
 
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./swagger.json" assert { type: "json" };
+
 const app = express();
 
 const logPath = path.resolve("public", "server.log");
 const accessLogStream = createWriteStream(logPath, { flags: "a" });
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(morgan("tiny", { stream: accessLogStream }));
 
