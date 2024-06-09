@@ -5,13 +5,14 @@ import Column from "./column.js";
 import Card from "./card.js";
 
 const iconsList = [
-  "project",
-  "star",
-  "loading",
-  "container",
-  "lightning",
-  "colors",
-  "hexagon",
+  "icon-roject",
+  "icon-Icon",
+  "icon-loading",
+  "icon-puzzle-piece",
+  "icon-cube",
+  "icon-lightning",
+  "icon-circles",
+  "icon-pentagon",
 ];
 
 const themeList = ["dark", "light", "violet"];
@@ -25,7 +26,7 @@ const boardSchema = new Schema(
     icon: {
       type: String,
       enum: iconsList,
-      default: "project",
+      default: "roject",
       required: [true, "Set icon for board"],
     },
     background: {
