@@ -335,7 +335,7 @@
       },
       "delete": {
         "tags": ["Board"],
-        "summary": "Delete Board by ID",
+        "summary": "Delete Board, Columns and Cards by boardID",
         "parameters": [
           {
             "name": "id",
@@ -408,6 +408,99 @@
           },
           "404": {
             "description": "Board not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/column/{id}": {
+      "put": {
+        "tags": ["Column"],
+        "summary": "Edit Column by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Column ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Column object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditColumnRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Column not found",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Column"],
+        "summary": "Delete Column and Cards by ColumnID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Column ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteColumnResponseById"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Column not found",
             "content": {}
           }
         }
@@ -717,6 +810,54 @@
           "updatedAt": {
             "type": "string",
             "description": "Board's update"
+          }
+        }
+      },
+      "EditColumnRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Column's title",
+            "format": "iiiiiiii"
+          }
+        }
+      },
+      "EditColumnResponse": {
+        "type": "object",
+        "properties": {
+          "columnId": {
+            "type": "string",
+            "description": "Column's id"
+          },
+          "title": {
+            "type": "string",
+            "description": "Column's title",
+            "format": "iiiiiiii"
+          },
+          "boardId": {
+            "type": "string",
+            "description": "Board's id"
+          },
+
+          "createdAt": {
+            "type": "string",
+            "description": "Board's create"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Board's update"
+          }
+        }
+      },
+      "DeleteColumnResponseById": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Logout success message",
+            "example": "Delete success"
           }
         }
       }

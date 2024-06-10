@@ -535,3 +535,12 @@ PATCH /auth/66670a6359b92d555e7ec481 401 28 - 1.327 ms
 PATCH /auth/66670a6359b92d555e7ec481 401 28 - 0.829 ms
 POST /api/column/ 401 28 - 14.389 ms
 POST /api/column/ 201 164 - 189.446 ms
+POST /auth/login 200 346 - 182.567 ms
+POST /api/column 201 164 - 133.925 ms
+PUT /api/column/6664614a00fe6cd64c4b8066 200 162 - 172.526 ms
+PUT /api/column/6664614a00fe6cd64c4b8066 200 164 - 115.420 ms
+DELETE /api/column/6664614a00fe6cd64c4b8066 401 28 - 7.481 ms
+POST /auth/login 200 344 - 163.076 ms
+DELETE /api/column/6664614a00fe6cd64c4b8066 404 23 - 151.524 ms
+DELETE /api/column/66648c9154e018b33c4e38d9 200 28 - 131.428 ms
+DELETE /api/column/6666e775dcdc568f9203f0b2 200 28 - 163.509 ms
