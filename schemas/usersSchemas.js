@@ -17,6 +17,6 @@ export const loginSchema = Joi.object({
   theme: Joi.string(),
 });
 
-export const updateSubscriptionSchema = Joi.object({
-  subscription: Joi.string().required(),
+export const updateUserSchemaThema = Joi.object({
+  theme: Joi.string().required(),
 });

@@ -11,7 +11,3 @@ export const updateBoardSchema = Joi.object({
   icon: Joi.string(),
   background: Joi.string(),
 });
-
-export const updateBoardSchemaThema = Joi.object({
-  theme: Joi.string(),
-});

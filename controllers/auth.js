@@ -176,7 +176,7 @@ export const getCurrent = async (req, res, next) => {
   }
 };
 
-export const updateSubscriptionUser = async (req, res, next) => {
+export const updateThemeUser = async (req, res, next) => {
   try {
     const { _id } = req.user;
     const result = await User.findOneAndUpdate({ _id }, req.body, {

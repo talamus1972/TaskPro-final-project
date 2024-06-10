@@ -7,7 +7,7 @@ import {
 } from "../middlewares/index.js";
 import {
   registerSchema,
-  updateSubscriptionSchema,
+  updateUserSchemaThema,
   emailSchema,
   loginSchema,
 } from "../schemas/usersSchemas.js";
@@ -16,7 +16,7 @@ import {
   login,
   getCurrent,
   logout,
-  updateSubscriptionUser,
+  updateThemeUser,
   updateAvatar,
   verifyEmail,
   resendVerifyEmail,
@@ -28,9 +28,15 @@ authRouter.post("/register", validateBody(registerSchema), register);
 
 authRouter.post("/login", validateBody(loginSchema), login);
 
-authRouter.get("/current", authenticate, getCurrent);
-
 authRouter.post("/logout", authenticate, logout);
+
+authRouter.patch(
+  "/:id",
+  authenticate,
+  isValidId,
+  validateBody(updateUserSchemaThema),
+  updateThemeUser
+);
 
 //============================================//
 
@@ -38,13 +44,7 @@ authRouter.get("/verify/:verificationToken", verifyEmail);
 
 authRouter.post("/verify", validateBody(emailSchema), resendVerifyEmail);
 
-authRouter.patch(
-  "/:id/subscription",
-  authenticate,
-  isValidId,
-  validateBody(updateSubscriptionSchema),
-  updateSubscriptionUser
-);
+authRouter.get("/current", authenticate, getCurrent);
 
 authRouter.patch(
   "/avatars",

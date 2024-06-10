@@ -22,6 +22,10 @@
       "name": "Auth",
       "description": "Authorization endpoints"
     },
+    {
+      "name": "User",
+      "description": "Endpoints for User"
+    },
 
     {
       "name": "Board",
@@ -34,10 +38,6 @@
     {
       "name": "Card",
       "description": "Card endpoints"
-    },
-    {
-      "name": "HomePage",
-      "description": "Endpoints on"
     }
   ],
   "paths": {
@@ -153,6 +153,55 @@
           },
           "401": {
             "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/{id}": {
+      "patch": {
+        "tags": ["Auth"],
+        "summary": "Change user theme",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID"
+          }
+        ],
+
+        "requestBody": {
+          "description": "Theme object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeUserThemeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
             "content": {}
           }
         }
@@ -402,6 +451,10 @@
           "userId": {
             "type": "string",
             "description": "User's id"
+          },
+          "theme": {
+            "type": "string",
+            "description": "User's theme"
           }
         }
       },
@@ -528,6 +581,69 @@
             "type": "string",
             "description": "Logout success message",
             "example": "Delete success"
+          }
+        }
+      }
+    },
+    "ChangeUserThemeRequest": {
+      "type": "object",
+      "required": ["theme"],
+      "properties": {
+        "theme": {
+          "type": "string",
+          "description": "Theme's title",
+          "format": "iiiiiiii"
+        }
+      },
+      "ChangeUserResponse": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "User's id"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email"
+          },
+          "theme": {
+            "type": "string",
+            "description": "Board's theme"
+          },
+          "token": {
+            "type": "string",
+            "description": "JWT token"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User's avatar"
+          },
+
+          "verify": {
+            "type": "string",
+            "description": "User's email verify",
+            "example": "false"
+          },
+
+          "verificationToken": {
+            "type": "string",
+            "description": "User's verification of Token"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Board's create"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Board's update"
           }
         }
       }
