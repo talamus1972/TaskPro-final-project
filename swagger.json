@@ -34,6 +34,10 @@
     {
       "name": "Card",
       "description": "Card endpoints"
+    },
+    {
+      "name": "HomePage",
+      "description": "Endpoints on"
     }
   ],
   "paths": {
@@ -284,6 +288,46 @@
             "content": {}
           }
         }
+      },
+      "delete": {
+        "tags": ["Board"],
+        "summary": "Delete Board by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Board ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteBoardResponseById"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Board not found",
+            "content": {}
+          }
+        }
       }
     }
   },
@@ -474,6 +518,16 @@
           "updatedAt": {
             "type": "string",
             "description": "Board's update"
+          }
+        }
+      },
+      "DeleteBoardResponseById": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Logout success message",
+            "example": "Delete success"
           }
         }
       }

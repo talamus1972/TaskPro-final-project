@@ -14,7 +14,7 @@ export const emailSchema = Joi.object({
 export const loginSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().required(),
-
+  theme: Joi.string(),
 });
 
 export const updateSubscriptionSchema = Joi.object({

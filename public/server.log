@@ -521,3 +521,5 @@ POST /api/board 400 35 - 52.077 ms
 PATCH /api/board/66643548013b885a6e3a1f41 401 28 - 2.249 ms
 PUT /api/board/66643548013b885a6e3a1f41 404 23 - 112.523 ms
 PUT /api/board/6664e81c92068ed70bd839ff 200 264 - 105.989 ms
+POST /auth/login 200 328 - 186.242 ms
+POST /auth/login 200 343 - 215.353 ms
