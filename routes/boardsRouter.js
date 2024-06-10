@@ -17,14 +17,14 @@ import {
 
 const boardsRouter = express.Router();
 
-boardsRouter.get("/:id", authenticate, isValidId, getOneBoard);
-
 boardsRouter.post(
   "/",
   authenticate,
   validateBody(createBoardSchema),
   createBoard
 );
+
+boardsRouter.get("/:id", authenticate, isValidId, getOneBoard);
 
 boardsRouter.put(
   "/:id",

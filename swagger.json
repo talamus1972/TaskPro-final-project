@@ -192,6 +192,48 @@
           }
         }
       }
+    },
+    "/api/board/{id}": {
+      "get": {
+        "tags": ["Board"],
+        "summary": "Get Board by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Board ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BoardResponseById"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Board not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -305,6 +347,46 @@
         }
       },
       "BoardResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Board's title",
+            "format": "iiiiiiii"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Board's icon",
+            "example": "roject"
+          },
+          "background": {
+            "type": "string",
+            "description": "Board's background",
+            "example": "dark"
+          },
+          "theme": {
+            "type": "string",
+            "description": "Board's theme"
+          },
+          "owner": {
+            "type": "string",
+            "description": "User's id"
+          },
+          "boardId": {
+            "type": "string",
+            "description": "Board's id"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Board's create"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Board's update"
+          }
+        }
+      },
+      "BoardResponseById": {
         "type": "object",
         "properties": {
           "title": {
