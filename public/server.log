@@ -525,3 +525,11 @@ POST /auth/login 200 328 - 186.242 ms
 POST /auth/login 200 343 - 215.353 ms
 PATCH /auth/6664e6b092068ed70bd839f6 401 28 - 16.159 ms
 PATCH /auth/6664e6b092068ed70bd839f6 200 556 - 124.000 ms
+POST /auth/login 200 346 - 172.146 ms
+POST /auth/login 200 346 - 139.340 ms
+PATCH /auth/66670a6359b92d555e7ec481 400 69 - 2.405 ms
+PATCH /auth/66670a6359b92d555e7ec481 400 69 - 15.706 ms
+POST /auth/register 409 26 - 59.048 ms
+POST /auth/login 200 346 - 154.081 ms
+PATCH /auth/66670a6359b92d555e7ec481 401 28 - 1.327 ms
+PATCH /auth/66670a6359b92d555e7ec481 401 28 - 0.829 ms

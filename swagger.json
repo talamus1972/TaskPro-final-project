@@ -23,11 +23,6 @@
       "description": "Authorization endpoints"
     },
     {
-      "name": "User",
-      "description": "Endpoints for User"
-    },
-
-    {
       "name": "Board",
       "description": "Board endpoints"
     },
@@ -382,6 +377,69 @@
   },
   "components": {
     "schemas": {
+      "ChangeUserThemeRequest": {
+        "type": "object",
+        "required": ["theme"],
+        "properties": {
+          "theme": {
+            "type": "string",
+            "description": "Theme's title",
+            "format": "light"
+          }
+        },
+        "ChangeUserResponse": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "string",
+              "description": "User's id"
+            },
+            "name": {
+              "type": "string",
+              "description": "User's name"
+            },
+            "password": {
+              "type": "string",
+              "description": "User's password"
+            },
+            "email": {
+              "type": "string",
+              "description": "User's email"
+            },
+            "theme": {
+              "type": "string",
+              "description": "Board's theme"
+            },
+            "token": {
+              "type": "string",
+              "description": "JWT token"
+            },
+            "avatarURL": {
+              "type": "string",
+              "description": "User's avatar"
+            },
+
+            "verify": {
+              "type": "string",
+              "description": "User's email verify",
+              "example": "false"
+            },
+
+            "verificationToken": {
+              "type": "string",
+              "description": "User's verification of Token"
+            },
+            "createdAt": {
+              "type": "string",
+              "description": "Board's create"
+            },
+            "updatedAt": {
+              "type": "string",
+              "description": "Board's update"
+            }
+          }
+        }
+      },
       "RegistrationRequest": {
         "type": "object",
         "required": ["name", "email", "password"],
@@ -472,7 +530,67 @@
           }
         }
       },
-
+      "ChangeUserThemeRequest": {
+        "type": "object",
+        "required": ["theme"],
+        "properties": {
+          "theme": {
+            "type": "string",
+            "description": "Theme's title",
+            "format": "light"
+          }
+        }
+      },
+      "ChangeUserResponse": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "User's id"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email"
+          },
+          "theme": {
+            "type": "string",
+            "description": "Board's theme"
+          },
+          "token": {
+            "type": "string",
+            "description": "JWT token"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User's avatar"
+          },
+          "verify": {
+            "type": "string",
+            "description": "User's email verify",
+            "example": "false"
+          },
+          "verificationToken": {
+            "type": "string",
+            "description": "User's verification of Token"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Board's create"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Board's update"
+          }
+        }
+      },
       "BoardRequest": {
         "type": "object",
         "required": ["title", "icon", "background"],
@@ -585,69 +703,7 @@
         }
       }
     },
-    "ChangeUserThemeRequest": {
-      "type": "object",
-      "required": ["theme"],
-      "properties": {
-        "theme": {
-          "type": "string",
-          "description": "Theme's title",
-          "format": "iiiiiiii"
-        }
-      },
-      "ChangeUserResponse": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "description": "User's id"
-          },
-          "name": {
-            "type": "string",
-            "description": "User's name"
-          },
-          "password": {
-            "type": "string",
-            "description": "User's password"
-          },
-          "email": {
-            "type": "string",
-            "description": "User's email"
-          },
-          "theme": {
-            "type": "string",
-            "description": "Board's theme"
-          },
-          "token": {
-            "type": "string",
-            "description": "JWT token"
-          },
-          "avatarURL": {
-            "type": "string",
-            "description": "User's avatar"
-          },
 
-          "verify": {
-            "type": "string",
-            "description": "User's email verify",
-            "example": "false"
-          },
-
-          "verificationToken": {
-            "type": "string",
-            "description": "User's verification of Token"
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "Board's create"
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "Board's update"
-          }
-        }
-      }
-    },
     "securitySchemes": {
       "Bearer": {
         "type": "http",
