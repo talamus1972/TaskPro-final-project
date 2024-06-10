@@ -505,6 +505,191 @@
           }
         }
       }
+    },
+    "/api/card": {
+      "post": {
+        "tags": ["Card"],
+        "summary": "Create Card",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Card object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Card ID",
+            "content": {}
+          },
+          "404": {
+            "description": "Card not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/card/{id}": {
+      "put": {
+        "tags": ["Card"],
+        "summary": "Edit Card by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Card ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Card object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditCardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditCardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Column not found",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Card"],
+        "summary": "Delete Card by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Card ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteCardResponseById"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Card not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/card/{id}/move": {
+      "patch": {
+        "tags": ["Card"],
+        "summary": "Move Card to another Column by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Card ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Card object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MoveCardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MoveCardResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Column not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -858,6 +1043,201 @@
             "type": "string",
             "description": "Logout success message",
             "example": "Delete success"
+          }
+        }
+      },
+      "CardRequest": {
+        "type": "object",
+        "required": [
+          "title",
+          "description",
+          "priority",
+          "deadline",
+          "columnId"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Card's title",
+            "format": "iiiiiiii"
+          },
+          "description": {
+            "type": "string",
+            "description": "Card's description",
+            "format": "iiiiiiii"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Without priority, Low, Medium, High",
+            "example": "Without priority"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Card's description",
+            "example": "01/01/01"
+          },
+          "columnId": {
+            "type": "string",
+            "description": "Card's id",
+            "example": "111111111111111"
+          }
+        }
+      },
+      "CardResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Card's title",
+            "format": "iiiiiiii"
+          },
+          "description": {
+            "type": "string",
+            "description": "Card's description",
+            "format": "iiiiiiii"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Without priority, Low, Medium, High",
+            "example": "Without priority"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Card's description",
+            "example": "01/01/01"
+          },
+          "columnId": {
+            "type": "string",
+            "description": "Column's id"
+          },
+          "cadrId": {
+            "type": "string",
+            "description": "Card's id"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Card's create"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Card's update"
+          }
+        }
+      },
+      "EditCardRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Column's title",
+            "format": "iiiiiiii"
+          },
+          "description": {
+            "type": "string",
+            "description": "Card's description",
+            "format": "iiiiiiii"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Without priority, Low, Medium, High",
+            "example": "Low"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Card's description",
+            "example": "01/01/01"
+          }
+        }
+      },
+      "EditCardResponse": {
+        "type": "object",
+        "properties": {
+          "cardId": {
+            "type": "string",
+            "description": "Card's id"
+          },
+          "title": {
+            "type": "string",
+            "description": "Card's title",
+            "format": "iiiiiiii"
+          },
+          "columnId": {
+            "type": "string",
+            "description": "Column's id"
+          },
+
+          "createdAt": {
+            "type": "string",
+            "description": "Card's create"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Card's update"
+          }
+        }
+      },
+      "DeleteCardResponseById": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Delete success message",
+            "example": "Delete success"
+          }
+        }
+      },
+      "MoveCardRequest": {
+        "type": "object",
+        "required": ["columnId"],
+
+        "properties": {
+          "columnId": {
+            "type": "string",
+            "description": "Column's id",
+            "example": "111111111111111"
+          }
+        }
+      },
+      "MoveCardResponse": {
+        "type": "object",
+        "properties": {
+          "cardId": {
+            "type": "string",
+            "description": "Card's id"
+          },
+          "title": {
+            "type": "string",
+            "description": "Card's title",
+            "format": "iiiiiiii"
+          },
+          "description": {
+            "type": "string",
+            "description": "Card's description",
+            "format": "iiiiiiii"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Without priority, Low, Medium, High",
+            "example": "Low"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Card's description",
+            "example": "01/01/01"
+          },
+          "columnId": {
+            "type": "string",
+            "description": "Column's id"
+          },
+
+          "createdAt": {
+            "type": "string",
+            "description": "Card's create"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Card's update"
           }
         }
       }
