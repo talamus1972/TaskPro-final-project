@@ -137,6 +137,7 @@ export const login = async (req, res, next) => {
       email: user.email,
       name: user.name,
       avatarURL: user.avatarURL,
+      id: user._id,
     });
   } catch (error) {
     console.error("Error in login:", error);

@@ -501,3 +501,11 @@ GET /api-docs 404 29 - 0.514 ms
 GET /api-docs 404 29 - 0.799 ms
 GET /api-docs 404 29 - 3.149 ms
 GET /favicon.ico 404 29 - 0.551 ms
+POST /auth/register 400 34 - 19.982 ms
+POST /auth/register 400 34 - 1.457 ms
+POST /auth/register 400 34 - 0.954 ms
+POST /auth/register 400 35 - 24.175 ms
+POST /auth/register 201 28 - 891.946 ms
+POST /auth/login 200 328 - 207.008 ms
+POST /auth/login 200 331 - 166.019 ms
+POST /auth/login 200 331 - 169.988 ms
