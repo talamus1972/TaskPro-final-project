@@ -509,3 +509,12 @@ POST /auth/register 201 28 - 891.946 ms
 POST /auth/login 200 328 - 207.008 ms
 POST /auth/login 200 331 - 166.019 ms
 POST /auth/login 200 331 - 169.988 ms
+POST /auth/logout 401 28 - 2.277 ms
+POST /auth/logout 401 28 - 0.519 ms
+POST /auth/login 200 331 - 176.691 ms
+POST /auth/logout 401 28 - 0.315 ms
+POST /auth/logout 401 28 - 0.340 ms
+POST /auth/login 200 331 - 192.758 ms
+GET /api/board 404 29 - 1.564 ms
+POST /api/board 401 28 - 2.652 ms
+POST /api/board 400 35 - 52.077 ms

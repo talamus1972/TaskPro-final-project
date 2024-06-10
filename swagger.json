@@ -42,7 +42,7 @@
         "tags": ["Auth"],
         "summary": "User registration",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
+
         "requestBody": {
           "description": "Registration's object",
           "required": true,
@@ -81,7 +81,7 @@
         "tags": ["Auth"],
         "summary": "User login",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
+
         "requestBody": {
           "description": "Login object",
           "required": true,
@@ -110,6 +110,45 @@
           },
           "401": {
             "description": "Email or password is wrong",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Logout object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "You have successfully logged out",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
             "content": {}
           }
         }
@@ -229,9 +268,44 @@
           }
         }
       },
+      "LogoutRequest": {
+        "type": "object",
+        "properties": {}
+      },
+      "LogoutResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Logout success message",
+            "example": "You have successfully logged out"
+          }
+        }
+      },
+
       "BoardRequest": {
         "type": "object",
         "required": ["title", "icon", "background"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Board's title",
+            "format": "iiiiiiii"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Board's icon",
+            "example": "icon-roject"
+          },
+          "background": {
+            "type": "string",
+            "description": "Board's background",
+            "example": "dark"
+          }
+        }
+      },
+      "BoardResponse": {
+        "type": "object",
         "properties": {
           "title": {
             "type": "string",
@@ -247,31 +321,26 @@
             "type": "string",
             "description": "Board's background",
             "example": "dark"
-          }
-        }
-      },
-      "BoardResponse": {
-        "type": "object",
-        "properties": {
-          "token": {
-            "type": "string",
-            "description": "JWT token"
           },
-          "email": {
+          "theme": {
             "type": "string",
-            "description": "User's email"
+            "description": "Board's theme"
           },
-          "name": {
-            "type": "string",
-            "description": "User's name"
-          },
-          "avatarURL": {
-            "type": "string",
-            "description": "User's avatar"
-          },
-          "userId": {
+          "owner": {
             "type": "string",
             "description": "User's id"
+          },
+          "boardId": {
+            "type": "string",
+            "description": "Board's id"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Board's create"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Board's update"
           }
         }
       }

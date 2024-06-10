@@ -26,7 +26,7 @@ const boardSchema = new Schema(
     icon: {
       type: String,
       enum: iconsList,
-      default: "roject",
+      default: "icon-roject",
       required: [true, "Set icon for board"],
     },
     background: {
