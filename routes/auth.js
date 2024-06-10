@@ -20,6 +20,7 @@ import {
   updateAvatar,
   verifyEmail,
   resendVerifyEmail,
+  getUserData,
 } from "../controllers/auth.js";
 
 const authRouter = express.Router();
@@ -37,6 +38,8 @@ authRouter.patch(
   validateBody(updateUserSchemaThema),
   updateThemeUser
 );
+
+authRouter.get("/data", authenticate, getUserData);
 
 //============================================//
 

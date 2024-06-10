@@ -8,6 +8,9 @@ import * as fs from "node:fs/promises";
 import Jimp from "jimp";
 import { nanoid } from "nanoid";
 import { sendEmail } from "../helpers/index.js";
+import Board from "../models/board.js";
+import Column from "../models/column.js";
+import Card from "../models/card.js";
 
 const { SECRET_KEY, BASE_URL } = process.env;
 
@@ -151,6 +154,56 @@ export const logout = async (req, res, next) => {
     const { _id } = req.user;
     await User.findByIdAndUpdate(_id, { token: "" });
     res.status(200).json({ message: "You have successfully logged out" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUserData = async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+
+    const boards = await Board.find({ owner: userId });
+
+    let orderedData = [];
+
+    for (const board of boards) {
+      const columns = await Column.find({ board: board._id });
+
+      let columnData = [];
+
+      for (const column of columns) {
+        const cards = await Card.find({ column: column._id });
+
+        let cardData = [];
+
+        for (const card of cards) {
+          cardData.push({
+            _id: card._id,
+            title: card.title,
+            description: card.description,
+            priority: card.priority,
+            deadline: card.deadline,
+          });
+        }
+
+        columnData.push({
+          _id: column._id,
+          title: column.title,
+          cards: cardData,
+        });
+      }
+
+      orderedData.push({
+        _id: board._id,
+        title: board.title,
+        icon: board.icon,
+        background: board.background,
+        columns: columnData,
+      });
+    }
+
+    res.json(orderedData);
   } catch (error) {
     next(error);
   }

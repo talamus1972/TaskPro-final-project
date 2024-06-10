@@ -202,6 +202,32 @@
         }
       }
     },
+    "/auth/data": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get user data (Boards, Column, Cards)",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDataResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      }
+    },
     "/api/board": {
       "post": {
         "tags": ["Board"],
@@ -845,6 +871,80 @@
           }
         }
       },
+      "UserDataResponse": {
+        "type": "object",
+        "properties": {
+          "boards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "boardId": {
+                  "type": "string",
+                  "description": "Board's id"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Board's title"
+                },
+                "icon": {
+                  "type": "string",
+                  "description": "Board's icon"
+                },
+                "background": {
+                  "type": "string",
+                  "description": "Board's background"
+                }
+              },
+              "columns": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "columnId": {
+                      "type": "string",
+                      "description": "Column's id"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Column's title"
+                    },
+                    "cards": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cardId": {
+                            "type": "string",
+                            "description": "Card's id"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Card's title"
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "Card's description"
+                          },
+                          "priority": {
+                            "type": "string",
+                            "description": "Card's priority"
+                          },
+                          "deadline": {
+                            "type": "string",
+                            "description": "Card's deadline"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+
       "BoardRequest": {
         "type": "object",
         "required": ["title", "icon", "background"],
