@@ -373,73 +373,49 @@
           }
         }
       }
+    },
+    "/api/column": {
+      "post": {
+        "tags": ["Column"],
+        "summary": "Create Column",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Column object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColumnRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Board ID",
+            "content": {}
+          },
+          "404": {
+            "description": "Board not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "ChangeUserThemeRequest": {
-        "type": "object",
-        "required": ["theme"],
-        "properties": {
-          "theme": {
-            "type": "string",
-            "description": "Theme's title",
-            "format": "light"
-          }
-        },
-        "ChangeUserResponse": {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "string",
-              "description": "User's id"
-            },
-            "name": {
-              "type": "string",
-              "description": "User's name"
-            },
-            "password": {
-              "type": "string",
-              "description": "User's password"
-            },
-            "email": {
-              "type": "string",
-              "description": "User's email"
-            },
-            "theme": {
-              "type": "string",
-              "description": "Board's theme"
-            },
-            "token": {
-              "type": "string",
-              "description": "JWT token"
-            },
-            "avatarURL": {
-              "type": "string",
-              "description": "User's avatar"
-            },
-
-            "verify": {
-              "type": "string",
-              "description": "User's email verify",
-              "example": "false"
-            },
-
-            "verificationToken": {
-              "type": "string",
-              "description": "User's verification of Token"
-            },
-            "createdAt": {
-              "type": "string",
-              "description": "Board's create"
-            },
-            "updatedAt": {
-              "type": "string",
-              "description": "Board's update"
-            }
-          }
-        }
-      },
       "RegistrationRequest": {
         "type": "object",
         "required": ["name", "email", "password"],
@@ -699,6 +675,48 @@
             "type": "string",
             "description": "Logout success message",
             "example": "Delete success"
+          }
+        }
+      },
+      "ColumnRequest": {
+        "type": "object",
+        "required": ["title", "boardId"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Column's title",
+            "format": "iiiiiiii"
+          },
+          "boardId": {
+            "type": "string",
+            "description": "Board's id",
+            "example": "111111111111111"
+          }
+        }
+      },
+      "ColumnResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Column's title",
+            "format": "iiiiiiii"
+          },
+          "boardId": {
+            "type": "string",
+            "description": "Board's id"
+          },
+          "columnId": {
+            "type": "string",
+            "description": "Column's id"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Board's create"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Board's update"
           }
         }
       }

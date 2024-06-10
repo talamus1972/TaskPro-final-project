@@ -533,3 +533,5 @@ POST /auth/register 409 26 - 59.048 ms
 POST /auth/login 200 346 - 154.081 ms
 PATCH /auth/66670a6359b92d555e7ec481 401 28 - 1.327 ms
 PATCH /auth/66670a6359b92d555e7ec481 401 28 - 0.829 ms
+POST /api/column/ 401 28 - 14.389 ms
+POST /api/column/ 201 164 - 189.446 ms
