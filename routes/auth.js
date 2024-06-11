@@ -1,10 +1,5 @@
 import express from "express";
-import {
-  validateBody,
-  authenticate,
-  isValidId,
-  upload,
-} from "../middlewares/index.js";
+import { validateBody, authenticate, isValidId } from "../middlewares/index.js";
 import {
   registerSchema,
   updateUserSchemaThema,
@@ -22,6 +17,8 @@ import {
   resendVerifyEmail,
   getUserData,
 } from "../controllers/auth.js";
+
+import upload from "../middlewares/uploadMiddleware.js";
 
 const authRouter = express.Router();
 
@@ -41,6 +38,13 @@ authRouter.patch(
 
 authRouter.get("/data", authenticate, getUserData);
 
+authRouter.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  updateAvatar
+);
+
 //============================================//
 
 authRouter.get("/verify/:verificationToken", verifyEmail);
@@ -48,12 +52,5 @@ authRouter.get("/verify/:verificationToken", verifyEmail);
 authRouter.post("/verify", validateBody(emailSchema), resendVerifyEmail);
 
 authRouter.get("/current", authenticate, getCurrent);
-
-authRouter.patch(
-  "/avatars",
-  authenticate,
-  upload.single("avatar"),
-  updateAvatar
-);
 
 export default authRouter;
