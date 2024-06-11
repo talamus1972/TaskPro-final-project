@@ -962,7 +962,7 @@
           "background": {
             "type": "string",
             "description": "Board's background",
-            "example": "dark"
+            "example": "https://res.cloudinary.com/dyqmk6bfl/image/upload/v1717839033/bg1-mobil_xupsp2.jpg"
           }
         }
       },
@@ -1022,7 +1022,7 @@
           "background": {
             "type": "string",
             "description": "Board's background",
-            "example": "dark"
+            "example": "https://res.cloudinary.com/dyqmk6bfl/image/upload/v1717839033/bg1-mobil_xupsp2.jpg"
           },
           "theme": {
             "type": "string",

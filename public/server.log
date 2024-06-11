@@ -598,3 +598,13 @@ POST /api/card/ 201 256 - 142.744 ms
 POST /api/card/ 201 265 - 129.793 ms
 GET /api/column/66678fa750a79ef5acc7c983 500 33 - 79.054 ms
 GET /api/column/66678fa750a79ef5acc7c983 200 375 - 127.267 ms
+PATCH /api/board/6666dba272592c056745c2bb/background 500 44 - 74.924 ms
+PATCH /api/board/6666dba272592c056745c2bb/background 400 31 - 112.306 ms
+PATCH /api/board/6666dba272592c056745c2bb/background 500 66 - 125.875 ms
+PATCH /api/board/6666dba272592c056745c2bb/background 200 99 - 160.124 ms
+PUT /api/board/6666dbd272592c056745c2c0 400 77 - 3.620 ms
+PUT /api/board/6666dbd272592c056745c2c0 404 23 - 98.304 ms
+PUT /api/board/6666dbd272592c056745c2c0 404 23 - 77.697 ms
+POST /auth/login 200 344 - 142.994 ms
+POST /api/board/ 201 235 - 98.213 ms
+PUT /api/board/66682b45cbb0fa8c430b7b5a 200 381 - 80.125 ms

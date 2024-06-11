@@ -58,31 +58,28 @@ export const deleteBoard = async (req, res, next) => {
   }
 };
 
-export const updateBoardBackground = async (req, res, next) => {
-  try {
-    const { id } = req.params;
+// export const updateBoardBackground = async (req, res, next) => {
+//   try {
+//     const { id } = req.params;
+//     const { background } = req.body;
 
-    if (!isValidObjectId(id)) {
-      throw HttpError(400, "Invalid Board ID");
-    }
+//     const board = await Board.findById(id);
+//     if (!board) {
+//       throw HttpError(404, "Board not found");
+//     }
 
-    const board = await Board.findById(id);
-    if (!board) {
-      throw HttpError(404, "Board not found");
-    }
+//     if (!background) {
+//       return res.status(400).json({ message: "Background URL not provided" });
+//     }
 
-    if (!req.file) {
-      return res.status(400).json({ message: "File not provided" });
-    }
+//     board.background = background;
+//     await board.save();
 
-    board.background = req.file.path;
-    await board.save();
-
-    res.json({ background: req.file.path });
-  } catch (error) {
-    next(error);
-  }
-};
+//     res.json({ background: board.background });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 // export const updateBoardThema = async (req, res, next) => {
 //   try {

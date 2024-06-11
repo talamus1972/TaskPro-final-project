@@ -4,7 +4,6 @@ import {
   createBoard,
   updateBoard,
   deleteBoard,
-  updateBoardBackground,
 } from "../controllers/boardControllers.js";
 
 import { isValidId, validateBody, authenticate } from "../middlewares/index.js";
@@ -13,8 +12,6 @@ import {
   createBoardSchema,
   updateBoardSchema,
 } from "../schemas/boardsSchemas.js";
-
-import upload from "../middlewares/uploadMiddleware.js";
 
 const boardsRouter = express.Router();
 
@@ -37,11 +34,10 @@ boardsRouter.put(
 
 boardsRouter.delete("/:id", authenticate, isValidId, deleteBoard);
 
-boardsRouter.patch(
-  "/:id/background",
-  authenticate,
-  upload.single("background"),
-  updateBoardBackground
-);
+// boardsRouter.patch(
+//   "/:id/background",
+//   authenticate,
+//   updateBoardBackground
+// );
 
 export default boardsRouter;
