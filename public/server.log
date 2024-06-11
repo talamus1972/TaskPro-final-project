@@ -589,3 +589,12 @@ GET /api/board/666786777ad5e7120fe6d40a 200 240 - 84.002 ms
 GET /auth/data 200 1212 - 422.390 ms
 GET /auth/data 200 1308 - 471.662 ms
 GET /auth/data 200 554 - 303.563 ms
+GET /api/column/6666eb25dcdc568f9203f112 401 28 - 5.750 ms
+POST /auth/login 200 344 - 168.854 ms
+POST /api/board/ 201 235 - 104.595 ms
+POST /api/column/ 201 183 - 134.626 ms
+GET /api/column/66678fa750a79ef5acc7c983 500 33 - 85.177 ms
+POST /api/card/ 201 256 - 142.744 ms
+POST /api/card/ 201 265 - 129.793 ms
+GET /api/column/66678fa750a79ef5acc7c983 500 33 - 79.054 ms
+GET /api/column/66678fa750a79ef5acc7c983 200 375 - 127.267 ms

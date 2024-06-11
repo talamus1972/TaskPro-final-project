@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createColumn,
+  getColumnById,
   updateColumn,
   deleteColumn,
 } from "../controllers/columnControllers.js";
@@ -20,6 +21,8 @@ columnsRouter.post(
   validateBody(createColumnSchema),
   createColumn
 );
+
+columnsRouter.get("/:id", authenticate, getColumnById);
 
 columnsRouter.put(
   "/:id",
