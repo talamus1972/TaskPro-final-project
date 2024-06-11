@@ -58,29 +58,55 @@ export const deleteBoard = async (req, res, next) => {
   }
 };
 
-export const updateBoardThema = async (req, res, next) => {
+export const updateBoardBackground = async (req, res, next) => {
   try {
-    const { _id: owner } = req.user;
-    const { id: boardId } = req.params;
-    const { theme } = req.body;
+    const { id } = req.params;
 
-    const themeList = ["dark", "light", "violet"];
-    if (theme && !themeList.includes(theme)) {
-      throw HttpError(400, "Invalid theme");
+    if (!isValidObjectId(id)) {
+      throw HttpError(400, "Invalid Board ID");
     }
 
-    const result = await Board.findOneAndUpdate(
-      { _id: boardId, owner },
-      req.body,
-      { new: true }
-    );
-
-    if (!result) {
-      throw HttpError(404, "Not Found");
+    const board = await Board.findById(id);
+    if (!board) {
+      throw HttpError(404, "Board not found");
     }
 
-    res.json(result);
+    if (!req.file) {
+      return res.status(400).json({ message: "File not provided" });
+    }
+
+    board.background = req.file.path;
+    await board.save();
+
+    res.json({ background: req.file.path });
   } catch (error) {
     next(error);
   }
 };
+
+// export const updateBoardThema = async (req, res, next) => {
+//   try {
+//     const { _id: owner } = req.user;
+//     const { id: boardId } = req.params;
+//     const { theme } = req.body;
+
+//     const themeList = ["dark", "light", "violet"];
+//     if (theme && !themeList.includes(theme)) {
+//       throw HttpError(400, "Invalid theme");
+//     }
+
+//     const result = await Board.findOneAndUpdate(
+//       { _id: boardId, owner },
+//       req.body,
+//       { new: true }
+//     );
+
+//     if (!result) {
+//       throw HttpError(404, "Not Found");
+//     }
+
+//     res.json(result);
+//   } catch (error) {
+//     next(error);
+//   }
+// };

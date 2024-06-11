@@ -244,36 +244,36 @@ export const updateThemeUser = async (req, res, next) => {
   }
 };
 
-export const updateAvatar = async (req, res, next) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ message: "File not provided" });
-    }
+// export const updateAvatar = async (req, res, next) => {
+//   try {
+//     if (!req.file) {
+//       return res.status(400).json({ message: "File not provided" });
+//     }
 
-    await fs.rename(
-      req.file.path,
-      path.resolve("public/avatars", req.file.filename)
-    );
+//     await fs.rename(
+//       req.file.path,
+//       path.resolve("public/avatars", req.file.filename)
+//     );
 
-    const avatarURL = `/avatars/${req.file.filename}`;
+//     const avatarURL = `/avatars/${req.file.filename}`;
 
-    const user = await User.findByIdAndUpdate(
-      req.user.id,
-      { avatarURL: req.file.filename },
-      { new: true }
-    );
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
+//     const user = await User.findByIdAndUpdate(
+//       req.user.id,
+//       { avatarURL: req.file.filename },
+//       { new: true }
+//     );
+//     if (!user) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
 
-    const image = await Jimp.read(
-      path.resolve("public/avatars", req.file.filename)
-    );
-    await image.resize(250, 250);
-    await image.writeAsync(path.resolve("public/avatars", req.file.filename));
+//     const image = await Jimp.read(
+//       path.resolve("public/avatars", req.file.filename)
+//     );
+//     await image.resize(250, 250);
+//     await image.writeAsync(path.resolve("public/avatars", req.file.filename));
 
-    res.json({ avatarURL });
-  } catch (error) {
-    next(error);
-  }
-};
+//     res.json({ avatarURL });
+//   } catch (error) {
+//     next(error);
+//   }
+// };

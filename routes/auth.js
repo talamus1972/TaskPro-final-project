@@ -12,13 +12,13 @@ import {
   getCurrent,
   logout,
   updateThemeUser,
-  updateAvatar,
   verifyEmail,
   resendVerifyEmail,
   getUserData,
 } from "../controllers/auth.js";
 
 import upload from "../middlewares/uploadMiddleware.js";
+import { updateAvatar } from "../controllers/updateAvatar.js";
 
 const authRouter = express.Router();
 
