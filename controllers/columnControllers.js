@@ -42,6 +42,7 @@ export const getColumnById = async (req, res, next) => {
     const cards = await Card.find({ column: column._id });
 
     const columnData = {
+      boardId: column.board._id,
       _id: column._id,
       title: column.title,
       cards: cards.map((card) => ({

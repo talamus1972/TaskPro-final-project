@@ -491,6 +491,46 @@
           }
         }
       },
+      "get": {
+        "tags": ["Column"],
+        "summary": "Get Column by ID with its Cards",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Column ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColumnResponseById"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Column not found",
+            "content": {}
+          }
+        }
+      },
       "delete": {
         "tags": ["Column"],
         "summary": "Delete Column and Cards by ColumnID",
@@ -1133,6 +1173,56 @@
           "updatedAt": {
             "type": "string",
             "description": "Board's update"
+          }
+        }
+      },
+      "ColumnResponseById": {
+        "type": "object",
+        "properties": {
+          "boardId": {
+            "type": "string",
+            "description": "Column's id"
+          },
+          "columnId": {
+            "type": "string",
+            "description": "Board's id"
+          },
+          "title": {
+            "type": "string",
+            "description": "Column's title",
+            "format": "iiiiiiii"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cardId": {
+                  "type": "string",
+                  "description": "Card's id"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Card's title",
+                  "format": "iiiiiiii"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Card's description",
+                  "format": "iiiiiiii"
+                },
+                "priority": {
+                  "type": "string",
+                  "description": "Without priority, Low, Medium, High",
+                  "example": "Without priority"
+                },
+                "deadline": {
+                  "type": "string",
+                  "description": "Card's description",
+                  "example": "01/01/01"
+                }
+              }
+            }
           }
         }
       },

@@ -608,3 +608,5 @@ PUT /api/board/6666dbd272592c056745c2c0 404 23 - 77.697 ms
 POST /auth/login 200 344 - 142.994 ms
 POST /api/board/ 201 235 - 98.213 ms
 PUT /api/board/66682b45cbb0fa8c430b7b5a 200 381 - 80.125 ms
+GET /api/column/66678fa750a79ef5acc7c983 200 117 - 160.513 ms
+GET /api/column/66678fa750a79ef5acc7c983 200 412 - 149.236 ms
