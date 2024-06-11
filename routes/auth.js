@@ -5,6 +5,7 @@ import {
   updateUserSchemaThema,
   emailSchema,
   loginSchema,
+  updateUserSchema,
 } from "../schemas/usersSchemas.js";
 import {
   register,
@@ -15,6 +16,7 @@ import {
   verifyEmail,
   resendVerifyEmail,
   getUserData,
+  updateUser,
 } from "../controllers/auth.js";
 
 import upload from "../middlewares/uploadMiddleware.js";
@@ -37,6 +39,14 @@ authRouter.patch(
 );
 
 authRouter.get("/data", authenticate, getUserData);
+
+authRouter.put(
+  "/:id",
+  authenticate,
+  isValidId,
+  validateBody(updateUserSchema),
+  updateUser
+);
 
 authRouter.patch(
   "/avatars",

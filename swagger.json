@@ -23,6 +23,10 @@
       "description": "Authorization endpoints"
     },
     {
+      "name": "User",
+      "description": "User endpoints"
+    },
+    {
       "name": "Board",
       "description": "Board endpoints"
     },
@@ -154,8 +158,55 @@
       }
     },
     "/auth/{id}": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Change user profile without Avatar",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Theme object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        }
+      },
       "patch": {
-        "tags": ["Auth"],
+        "tags": ["User"],
         "summary": "Change user theme",
         "parameters": [
           {
@@ -204,7 +255,7 @@
     },
     "/auth/data": {
       "get": {
-        "tags": ["Auth"],
+        "tags": ["User"],
         "summary": "Get user data (Boards, Column, Cards)",
         "security": [{ "Bearer": [] }],
         "responses": {

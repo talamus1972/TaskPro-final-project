@@ -20,3 +20,9 @@ export const loginSchema = Joi.object({
 export const updateUserSchemaThema = Joi.object({
   theme: Joi.string().required(),
 });
+
+export const updateUserSchema = Joi.object({
+  name: Joi.string(),
+  email: Joi.string().pattern(emailRegexp),
+  password: Joi.string(),
+});

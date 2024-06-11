@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import gravatar from "gravatar";
 import path from "node:path";
-import * as fs from "node:fs/promises";
+// import * as fs from "node:fs/promises";
 import Jimp from "jimp";
 import { nanoid } from "nanoid";
 import { sendEmail } from "../helpers/index.js";
@@ -238,6 +238,24 @@ export const updateThemeUser = async (req, res, next) => {
     if (!result) {
       throw HttpError(404, "Not Found");
     }
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateUser = async (req, res, next) => {
+  try {
+    const { _id: userId } = req.user;
+
+    const result = await User.findOneAndUpdate({ _id: userId }, req.body, {
+      new: true,
+    });
+
+    if (!result) {
+      throw HttpError(404, "Not Found");
+    }
+
     res.json(result);
   } catch (error) {
     next(error);

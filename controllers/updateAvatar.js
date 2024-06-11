@@ -1,3 +1,5 @@
+import User from "../models/user.js";
+
 export const updateAvatar = async (req, res, next) => {
   try {
     if (!req.file) {
