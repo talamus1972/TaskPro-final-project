@@ -689,3 +689,13 @@ PUT /auth/avatar 400 38 - 60.529 ms
 PUT /auth/avatar 400 38 - 49.603 ms
 POST /auth/register 409 26 - 63.003 ms
 POST /auth/register 201 418 - 878.652 ms
+PUT /auth/avatar 400 38 - 38.984 ms
+PUT /auth/avatar 400 38 - 55.462 ms
+PUT /auth/avatar 400 38 - 46.125 ms
+PUT /auth/avatar 400 38 - 60.608 ms
+PUT /auth/avatar 400 38 - 49.146 ms
+PUT /auth/avatar 400 38 - 76.537 ms
+PUT /auth/avatar 400 38 - 55.111 ms
+PUT /auth/avatar 400 38 - 59.176 ms
+PUT /auth/avatar 400 38 - 54.293 ms
+PUT /auth/avatar 400 38 - 38.599 ms

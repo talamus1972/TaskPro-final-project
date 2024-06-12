@@ -156,6 +156,7 @@ export const login = async (req, res, next) => {
       avatarURL: user.avatarURL,
       id: user._id,
       theme: user.theme,
+      password: user.password,
     });
   } catch (error) {
     console.error("Error in login:", error);

@@ -1,9 +1,11 @@
 import User from "../models/user.js";
 
+import { v2 as Cloudinary } from "cloudinary";
+
 export const updateAvatar = async (req, res, next) => {
   try {
-    console.log("req.user:", req.user); // Логирование пользователя
-    console.log("req.file:", req.file); // Логирование файла
+    console.log("req.user:", req.user);
+    console.log("req.file:", req.file);
 
     if (!req.file) {
       return res.status(400).json({ message: "File not provided" });

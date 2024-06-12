@@ -19,7 +19,7 @@ import {
   updateUser,
 } from "../controllers/auth.js";
 
-import upload from "../middlewares/uploadMiddleware.js";
+// import upload from "../middlewares/uploadMiddleware.js";
 import { updateAvatar } from "../controllers/updateAvatar.js";
 
 const authRouter = express.Router();
@@ -51,13 +51,13 @@ authRouter.put(
 authRouter.patch(
   "/avatars",
   authenticate,
-  upload.single("avatar"),
+  // upload.single("avatar"),
   updateAvatar
 );
 
 authRouter.get("/current", authenticate, getCurrent);
 
-authRouter.put("/avatar", authenticate, upload.single("avatar"), updateAvatar);
+authRouter.put("/avatar", authenticate, updateAvatar);
 
 //============================================//
 
@@ -66,3 +66,5 @@ authRouter.get("/verify/:verificationToken", verifyEmail);
 authRouter.post("/verify", validateBody(emailSchema), resendVerifyEmail);
 
 export default authRouter;
+
+// upload.single("avatar"),
