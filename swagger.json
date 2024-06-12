@@ -279,6 +279,32 @@
         }
       }
     },
+    "/auth/current": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Function on page refresh",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserRefreshResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      }
+    },
     "/api/board": {
       "post": {
         "tags": ["Board"],
@@ -1054,7 +1080,32 @@
           }
         }
       },
+      "UserRefreshResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User's avatar"
+          },
+          "userId": {
+            "type": "string",
+            "description": "User's id"
+          },
 
+          "theme": {
+            "type": "string",
+            "description": "Board's theme"
+          }
+        }
+      },
       "BoardRequest": {
         "type": "object",
         "required": ["title", "icon", "background"],
