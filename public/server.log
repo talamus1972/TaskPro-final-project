@@ -674,3 +674,4 @@ POST /auth/register 201 28 - 857.257 ms
 POST /auth/login 200 343 - 158.847 ms
 PUT /auth/6660d6f4f2b84b1bc97ad135 200 562 - 164.347 ms
 POST /auth/login 200 350 - 193.336 ms
+POST /auth/register 201 343 - 675.863 ms

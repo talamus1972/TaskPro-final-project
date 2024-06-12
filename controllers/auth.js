@@ -44,12 +44,25 @@ export const register = async (req, res, next) => {
 
     await sendEmail(verifyEmail);
 
-    res.status(201).json({ email: newUser.email });
+    const payload = {
+      id: newUser._id,
+    };
+
+    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "24h" });
+    await User.findByIdAndUpdate(newUser._id, { token });
+
+    res.status(201).json({
+      token,
+      email: newUser.email,
+      name: newUser.name,
+      avatarURL: newUser.avatarURL,
+      id: newUser._id,
+      theme: newUser.theme,
+    });
   } catch (error) {
     next(error);
   }
 };
-
 export const verifyEmail = async (req, res, next) => {
   try {
     const { verificationToken } = req.params;
