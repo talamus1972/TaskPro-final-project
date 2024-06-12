@@ -213,14 +213,21 @@ export const updateThemeUser = async (req, res, next) => {
 
 export const getCurrent = async (req, res, next) => {
   try {
-    const { email } = req.user;
+    const { _id } = req.user;
 
-    if (!req.user) {
+    const user = await User.findById(_id);
+
+    if (!user) {
       return next(HttpError(401, "Not authorized"));
     }
 
     res.json({
-      email,
+      token: req.token,
+      email: user.email,
+      name: user.name,
+      avatarURL: user.avatarURL,
+      id: user._id,
+      theme: user.theme,
     });
   } catch (error) {
     console.error("Error in getCurrent:", error);
