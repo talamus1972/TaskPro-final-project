@@ -677,3 +677,15 @@ POST /auth/login 200 350 - 193.336 ms
 POST /auth/register 201 343 - 675.863 ms
 GET /auth/ 404 29 - 4.401 ms
 GET /auth/current 200 168 - 114.837 ms
+POST /auth/avatar 404 29 - 3.298 ms
+PUT /auth/avatar 400 38 - 50.098 ms
+PUT /auth/avatar 400 38 - 36.571 ms
+PUT /auth/avatar 400 38 - 65.909 ms
+PUT /auth/avatar 400 38 - 51.465 ms
+PUT /auth/avatar 400 38 - 61.990 ms
+PUT /auth/avatar 400 38 - 48.611 ms
+PUT /auth/avatar 400 38 - 62.927 ms
+PUT /auth/avatar 400 38 - 60.529 ms
+PUT /auth/avatar 400 38 - 49.603 ms
+POST /auth/register 409 26 - 63.003 ms
+POST /auth/register 201 418 - 878.652 ms

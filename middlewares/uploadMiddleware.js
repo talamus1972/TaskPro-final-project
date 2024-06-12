@@ -5,9 +5,16 @@ import cloudinary from "../cloudinaryConfig.js";
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "",
+    folder: "avatars",
     format: async (req, file) => "png",
-    public_id: (req, file) => "computed-filename-using-request", // Опционально: укажите логіку імені файлу
+    public_id: (req, file) => {
+      const userId = req.user._id.toString(); // Получение userId
+      const basename = path.basename(
+        file.originalname,
+        path.extname(file.originalname)
+      ); // Базовое имя файла
+      return `${basename}-${userId}`; // Формирование имени файла
+    },
   },
 });
 

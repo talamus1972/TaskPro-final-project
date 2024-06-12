@@ -57,6 +57,8 @@ authRouter.patch(
 
 authRouter.get("/current", authenticate, getCurrent);
 
+authRouter.put("/avatar", authenticate, upload.single("avatar"), updateAvatar);
+
 //============================================//
 
 authRouter.get("/verify/:verificationToken", verifyEmail);

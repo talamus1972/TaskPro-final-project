@@ -58,6 +58,7 @@ export const register = async (req, res, next) => {
       avatarURL: newUser.avatarURL,
       id: newUser._id,
       theme: newUser.theme,
+      password: newUser.password,
     });
   } catch (error) {
     next(error);
