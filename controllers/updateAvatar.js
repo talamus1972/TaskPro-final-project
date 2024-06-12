@@ -1,6 +1,7 @@
 import User from "../models/user.js";
 
 import { v2 as Cloudinary } from "cloudinary";
+// import cloudinaryConfig from "../cloudinaryConfig.js";
 
 export const updateAvatar = async (req, res, next) => {
   try {
