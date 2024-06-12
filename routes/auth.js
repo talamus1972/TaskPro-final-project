@@ -55,12 +55,12 @@ authRouter.patch(
   updateAvatar
 );
 
+authRouter.get("/current", authenticate, getCurrent);
+
 //============================================//
 
 authRouter.get("/verify/:verificationToken", verifyEmail);
 
 authRouter.post("/verify", validateBody(emailSchema), resendVerifyEmail);
-
-authRouter.get("/current", authenticate, getCurrent);
 
 export default authRouter;

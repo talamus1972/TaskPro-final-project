@@ -159,6 +159,62 @@ export const logout = async (req, res, next) => {
   }
 };
 
+export const updateUser = async (req, res, next) => {
+  try {
+    const { _id: userId } = req.user;
+    const { password, ...updateFields } = req.body;
+
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      updateFields.password = hashedPassword;
+    }
+
+    const result = await User.findOneAndUpdate({ _id: userId }, updateFields, {
+      new: true,
+    });
+
+    if (!result) {
+      throw HttpError(404, "Not Found");
+    }
+
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateThemeUser = async (req, res, next) => {
+  try {
+    const { _id } = req.user;
+    const result = await User.findOneAndUpdate({ _id }, req.body, {
+      new: true,
+    });
+    if (!result) {
+      throw HttpError(404, "Not Found");
+    }
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getCurrent = async (req, res, next) => {
+  try {
+    const { email } = req.user;
+
+    if (!req.user) {
+      return next(HttpError(401, "Not authorized"));
+    }
+
+    res.json({
+      email,
+    });
+  } catch (error) {
+    console.error("Error in getCurrent:", error);
+    next(error);
+  }
+};
+
 export const getUserData = async (req, res, next) => {
   try {
     const userId = req.user._id;
@@ -210,57 +266,6 @@ export const getUserData = async (req, res, next) => {
 };
 
 //===============================================//
-
-export const getCurrent = async (req, res, next) => {
-  try {
-    const { email, subscription } = req.user;
-
-    if (!req.user) {
-      return next(HttpError(401, "Not authorized"));
-    }
-
-    res.json({
-      email,
-      subscription,
-    });
-  } catch (error) {
-    console.error("Error in getCurrent:", error);
-    next(error);
-  }
-};
-
-export const updateThemeUser = async (req, res, next) => {
-  try {
-    const { _id } = req.user;
-    const result = await User.findOneAndUpdate({ _id }, req.body, {
-      new: true,
-    });
-    if (!result) {
-      throw HttpError(404, "Not Found");
-    }
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const updateUser = async (req, res, next) => {
-  try {
-    const { _id: userId } = req.user;
-
-    const result = await User.findOneAndUpdate({ _id: userId }, req.body, {
-      new: true,
-    });
-
-    if (!result) {
-      throw HttpError(404, "Not Found");
-    }
-
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-};
 
 // export const updateAvatar = async (req, res, next) => {
 //   try {
