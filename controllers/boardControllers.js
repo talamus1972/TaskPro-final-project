@@ -1,6 +1,7 @@
 import { HttpError } from "../helpers/index.js";
 
 import Board from "../models/board.js";
+import user from "../models/user.js";
 
 export const createBoard = async (req, res, next) => {
   try {
@@ -56,6 +57,7 @@ export const getOneBoard = async (req, res, next) => {
       title: board.title,
       icon: board.icon,
       background: board.background,
+      theme: user.theme,
       columns: columnData,
     };
 

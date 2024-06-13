@@ -442,7 +442,7 @@
     "/api/board/{id}": {
       "get": {
         "tags": ["Board"],
-        "summary": "Get Board by ID",
+        "summary": "Get Board by ID and Columns and Cards",
         "parameters": [
           {
             "name": "id",
@@ -1285,6 +1285,10 @@
       "BoardResponseById": {
         "type": "object",
         "properties": {
+          "boardId": {
+            "type": "string",
+            "description": "Board's id"
+          },
           "title": {
             "type": "string",
             "description": "Board's title",
@@ -1308,10 +1312,7 @@
             "type": "string",
             "description": "User's id"
           },
-          "boardId": {
-            "type": "string",
-            "description": "Board's id"
-          },
+
           "createdAt": {
             "type": "string",
             "description": "Board's create"
