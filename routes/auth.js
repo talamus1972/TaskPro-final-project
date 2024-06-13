@@ -21,7 +21,6 @@ import {
 
 import { upload } from "../middlewares/upload.js";
 
-// import upload from "../middlewares/uploadMiddleware.js";
 import { updateAvatar } from "../controllers/updateAvatar.js";
 
 const authRouter = express.Router();
@@ -51,13 +50,6 @@ authRouter.put(
   validateBody(updateUserSchema),
   updateUser
 );
-
-// authRouter.patch(
-//   "/avatars",
-//   authenticate,
-//   // upload.single("avatar"),
-//   updateAvatar
-// );
 
 authRouter.get("/current", authenticate, getCurrent);
 
