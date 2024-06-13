@@ -1,29 +1,30 @@
 import User from "../models/user.js";
-
-import { v2 as Cloudinary } from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
 // import cloudinaryConfig from "../cloudinaryConfig.js";
+import fs from "fs/promises";
 
 export const updateAvatar = async (req, res, next) => {
   try {
-    console.log("req.user:", req.user);
-    console.log("req.file:", req.file);
-
     if (!req.file) {
       return res.status(400).json({ message: "File not provided" });
     }
-
+    console.log(req.file);
+    // if (!user) {
+    //   return res.status(404).json({ message: "User not found" });
+    // }
+    console.log(req.file.path);
+    // cloudinaryConfig();
+    const result = await cloudinary.uploader.upload(req.file.path);
     const user = await User.findByIdAndUpdate(
-      req.user._id,
-      { avatarURL: req.file.path },
+      req.user.id,
+      { avatarURL: result.url },
       { new: true }
     );
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
+    console.log(user);
+    await fs.unlink(req.file.path);
     res.json({ avatarURL: user.avatarURL });
   } catch (error) {
+    console.error("Error in updateAvatar:", error);
     next(error);
   }
 };

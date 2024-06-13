@@ -9,6 +9,8 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
+  "consumes": ["application/json", "multipart/form-data"],
+  "produces": ["application.json"],
   "servers": [
     {
       "url": "https://taskpro-final-project.onrender.com"
@@ -191,6 +193,99 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ChangeUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": ["User"],
+        "summary": "Change user theme",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Theme object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeUserThemeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/avatar": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Change user Avatar",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Avatar upload",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The avatar file to upload"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeAvatarResponse"
                 }
               }
             }
@@ -954,6 +1049,26 @@
             "type": "string",
             "description": "Theme's title",
             "format": "light"
+          }
+        }
+      },
+      "ChangeAvatarRequest": {
+        "type": "object",
+        "required": ["theme"],
+        "properties": {
+          "theme": {
+            "type": "string",
+            "format": "binary",
+            "description": "The avatar file to upload"
+          }
+        }
+      },
+      "ChangeAvatarResponse": {
+        "type": "object",
+        "properties": {
+          "avatarURL": {
+            "type": "string",
+            "description": "URL of the updated avatar"
           }
         }
       },

@@ -19,6 +19,8 @@ import {
   updateUser,
 } from "../controllers/auth.js";
 
+import { upload } from "../middlewares/upload.js";
+
 // import upload from "../middlewares/uploadMiddleware.js";
 import { updateAvatar } from "../controllers/updateAvatar.js";
 
@@ -40,6 +42,8 @@ authRouter.patch(
 
 authRouter.get("/data", authenticate, getUserData);
 
+authRouter.put("/avatar", authenticate, upload.single("avatar"), updateAvatar);
+
 authRouter.put(
   "/:id",
   authenticate,
@@ -48,16 +52,14 @@ authRouter.put(
   updateUser
 );
 
-authRouter.patch(
-  "/avatars",
-  authenticate,
-  // upload.single("avatar"),
-  updateAvatar
-);
+// authRouter.patch(
+//   "/avatars",
+//   authenticate,
+//   // upload.single("avatar"),
+//   updateAvatar
+// );
 
 authRouter.get("/current", authenticate, getCurrent);
-
-authRouter.put("/avatar", authenticate, updateAvatar);
 
 //============================================//
 
@@ -66,5 +68,3 @@ authRouter.get("/verify/:verificationToken", verifyEmail);
 authRouter.post("/verify", validateBody(emailSchema), resendVerifyEmail);
 
 export default authRouter;
-
-// upload.single("avatar"),
