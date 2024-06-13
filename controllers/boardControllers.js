@@ -12,14 +12,53 @@ export const createBoard = async (req, res, next) => {
   }
 };
 
+import Column from "../models/column.js";
+import Card from "../models/card.js";
+
 export const getOneBoard = async (req, res, next) => {
   try {
     const { _id: owner } = req.user;
     const { id: boardId } = req.params;
-    const result = await Board.findOne({ _id: boardId, owner });
-    if (!result) {
+
+    const board = await Board.findOne({ _id: boardId, owner });
+    if (!board) {
       throw HttpError(404, "Not found");
     }
+
+    const columns = await Column.find({ board: board._id });
+
+    let columnData = [];
+
+    for (const column of columns) {
+      const cards = await Card.find({ column: column._id });
+
+      let cardData = [];
+
+      for (const card of cards) {
+        cardData.push({
+          _id: card._id,
+          title: card.title,
+          description: card.description,
+          priority: card.priority,
+          deadline: card.deadline,
+        });
+      }
+
+      columnData.push({
+        _id: column._id,
+        title: column.title,
+        cards: cardData,
+      });
+    }
+
+    const result = {
+      _id: board._id,
+      title: board.title,
+      icon: board.icon,
+      background: board.background,
+      columns: columnData,
+    };
+
     res.json(result);
   } catch (error) {
     next(error);
