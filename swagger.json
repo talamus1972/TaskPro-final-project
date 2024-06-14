@@ -403,7 +403,7 @@
     "/auth/help": {
       "post": {
         "tags": ["User"],
-        "summary": "User send email about help!",
+        "summary": "User send email about help! (on taskpro.project@gmail.com)",
         "parameters": [],
         "security": [{ "Bearer": [] }],
         "requestBody": {
