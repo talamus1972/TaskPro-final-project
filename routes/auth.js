@@ -22,6 +22,7 @@ import {
 import { upload } from "../middlewares/upload.js";
 
 import { updateAvatar } from "../controllers/updateAvatar.js";
+import { userSendEmail } from "../controllers/userSendEmail.js";
 
 const authRouter = express.Router();
 
@@ -52,6 +53,8 @@ authRouter.put(
 );
 
 authRouter.get("/current", authenticate, getCurrent);
+
+authRouter.post("/help", authenticate, userSendEmail);
 
 //============================================//
 

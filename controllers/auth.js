@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import gravatar from "gravatar";
 import path from "node:path";
 // import * as fs from "node:fs/promises";
-import Jimp from "jimp";
+// import Jimp from "jimp";
 import { nanoid } from "nanoid";
 import { sendEmail } from "../helpers/index.js";
 import Board from "../models/board.js";

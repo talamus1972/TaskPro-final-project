@@ -759,3 +759,8 @@ POST /api/column/ 201 183 - 178.100 ms
 GET /api/board/666b2993e322def24257e07b 200 178 - 176.056 ms
 POST /api/card/ 201 265 - 140.653 ms
 GET /api/board/666b2993e322def24257e07b 200 329 - 178.042 ms
+POST /auth/login 200 415 - 188.020 ms
+POST /auth/help 500 38 - 39.151 ms
+POST /auth/help 400 49 - 70.944 ms
+POST /auth/help 400 49 - 40.354 ms
+POST /auth/help 200 38 - 703.538 ms

@@ -11,3 +11,15 @@ export const sendEmail = async (data) => {
   await sgMail.send(email);
   return true;
 };
+
+// const email = {
+//   to: "mitihag446@morxin.com",
+//   from: FROM_EMAIL,
+//   sabject: "Need Help!",
+//   html: "",
+// };
+
+// sgMail
+//   .send(email)
+//   .then(() => console.log("Email send saccess"))
+//   .catch((error) => console.log(error.message));
