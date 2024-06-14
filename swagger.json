@@ -400,6 +400,45 @@
         }
       }
     },
+    "/auth/help": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User send email about help!",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "User email object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserEmailRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email sent successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserEmailResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Comment and user email are required",
+            "content": {}
+          },
+          "401": {
+            "description": "Email or password is wrong",
+            "content": {}
+          }
+        }
+      }
+    },
     "/api/board": {
       "post": {
         "tags": ["Board"],
@@ -1218,6 +1257,32 @@
           "theme": {
             "type": "string",
             "description": "Board's theme"
+          }
+        }
+      },
+      "UserEmailRequest": {
+        "type": "object",
+        "required": ["userEmail", "icon", "background"],
+        "properties": {
+          "userEmail": {
+            "type": "string",
+            "description": "userEmail's title",
+            "format": "email"
+          },
+          "comment": {
+            "type": "string",
+            "description": "userEmail's comment",
+            "example": "Help me!"
+          }
+        }
+      },
+      "UserEmailResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message's title",
+            "format": "iiiiiiii"
           }
         }
       },
