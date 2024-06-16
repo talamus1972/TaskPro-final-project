@@ -783,3 +783,16 @@ GET /link.html 200 375 - 5.335 ms
 GET /auth/google 302 868 - 4.024 ms
 GET /auth/google 302 414 - 0.762 ms
 GET /auth/google 302 868 - 1.253 ms
+GET /auth/google 302 868 - 3.920 ms
+GET /link 404 29 - 4.493 ms
+GET / 404 29 - 0.780 ms
+GET / 404 29 - 0.640 ms
+GET /chrome.css.map 404 29 - 0.683 ms
+OPTIONS /chrome.css.map 204 0 - 0.472 ms
+GET /chrome.css.map 404 29 - 1.014 ms
+GET / 404 29 - 0.547 ms
+GET /chrome.css.map 404 29 - 0.782 ms
+GET / 404 29 - 0.850 ms
+GET / 404 29 - 0.732 ms
+GET /link.html 200 375 - 4.086 ms
+GET /auth/google 302 868 - 0.997 ms
