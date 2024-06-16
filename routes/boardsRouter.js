@@ -34,10 +34,4 @@ boardsRouter.put(
 
 boardsRouter.delete("/:id", authenticate, isValidId, deleteBoard);
 
-// boardsRouter.patch(
-//   "/:id/background",
-//   authenticate,
-//   updateBoardBackground
-// );
-
 export default boardsRouter;
