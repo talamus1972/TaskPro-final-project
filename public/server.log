@@ -781,3 +781,5 @@ GET /link 404 29 - 0.624 ms
 GET /auth/google 302 868 - 4.104 ms
 GET /link.html 200 375 - 5.335 ms
 GET /auth/google 302 868 - 4.024 ms
+GET /auth/google 302 414 - 0.762 ms
+GET /auth/google 302 868 - 1.253 ms

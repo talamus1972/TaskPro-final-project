@@ -10,7 +10,7 @@ import { nanoid } from "nanoid";
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const BASE_URL = process.env.BASE_URL;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-const FRONTEND_URL = process.env.FRONTEND_URL;
+const SECRET_KEY = process.env.SECRET_KEY;
 
 export const googleAuth = async (req, res) => {
   const stringifiedParams = queryString.stringify({
