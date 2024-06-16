@@ -772,3 +772,12 @@ GET / 404 29 - 6.574 ms
 GET /favicon.ico 404 29 - 1.218 ms
 GET /auth/google 404 29 - 4.197 ms
 GET /auth/google 302 414 - 3.074 ms
+GET / 404 29 - 5.370 ms
+GET / 404 29 - 0.698 ms
+GET / 404 29 - 0.534 ms
+GET / 404 29 - 0.608 ms
+GET / 404 29 - 0.526 ms
+GET /link 404 29 - 0.624 ms
+GET /auth/google 302 868 - 4.104 ms
+GET /link.html 200 375 - 5.335 ms
+GET /auth/google 302 868 - 4.024 ms
