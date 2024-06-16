@@ -8,6 +8,8 @@ import authRouter from "./routes/auth.js";
 import boardsRouter from "./routes/boardsRouter.js";
 import columnsRouter from "./routes/columnsRouter.js";
 
+import authRouterGoogle from "./routes/authRouterGoogle.js";
+
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "./swagger.json" assert { type: "json" };
 
@@ -24,6 +26,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/auth", authRouter);
+app.use("/auth", authRouterGoogle);
+
 app.use("/api/board", boardsRouter);
 app.use("/api/column", columnsRouter);
 app.use("/api/card", cardsRouter);

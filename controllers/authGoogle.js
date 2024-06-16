@@ -5,6 +5,8 @@ import queryString from "query-string";
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const BASE_URL = process.env.BASE_URL;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const FRONTEND_URL = process.env.FRONTEND_URL;
+
 
 export const googleAuth = async (req, res) => {
   const stringifiedParams = queryString.stringify({
@@ -52,6 +54,6 @@ export const googleRedirect = async (req, res) => {
   // ...
   // ...
   return res.redirect(
-    `${process.env.FRONTEND_URL}?email=${userData.data.email}`
+    `${FRONTEND_URL}?email=${userData.data.email}`
   );
 };

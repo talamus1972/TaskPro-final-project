@@ -770,3 +770,5 @@ POST /auth/login 200 447 - 165.926 ms
 POST /auth/help 200 38 - 882.361 ms
 GET / 404 29 - 6.574 ms
 GET /favicon.ico 404 29 - 1.218 ms
+GET /auth/google 404 29 - 4.197 ms
+GET /auth/google 302 414 - 3.074 ms

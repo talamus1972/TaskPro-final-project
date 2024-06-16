@@ -1,9 +1,11 @@
 import express from "express";
-import ctrWrapper from "../helpers/ctrWrapper";
+import ctrWrapper from "../helpers/ctrWrapper.js";
 import { googleAuth, googleRedirect } from "../controllers/authGoogle.js";
 
-const authRouter = express.Router();
+const authRouterGoogle = express.Router();
 
-authRouter.get("/google", ctrWrapper(googleAuth));
+authRouterGoogle.get("/google", ctrWrapper(googleAuth));
 
-authRouter.get("/google-redirect", ctrWrapper(googleRedirect));
+authRouterGoogle.get("/google-redirect", ctrWrapper(googleRedirect));
+
+export default authRouterGoogle;
