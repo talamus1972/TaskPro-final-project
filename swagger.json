@@ -999,6 +999,10 @@
           "theme": {
             "type": "string",
             "description": "User's theme"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password"
           }
         }
       },
@@ -1044,6 +1048,11 @@
           "theme": {
             "type": "string",
             "description": "User's theme"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123"
           }
         }
       },
