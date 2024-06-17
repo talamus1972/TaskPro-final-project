@@ -2,7 +2,7 @@ import User from "../models/user.js";
 import HttpError from "../helpers/HttpError.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import gravatar from "gravatar";
+// import gravatar from "gravatar";
 import path from "node:path";
 
 import { nanoid } from "nanoid";
@@ -24,7 +24,8 @@ export const register = async (req, res, next) => {
     }
     const hashPassword = await bcrypt.hash(password, 10);
 
-    const avatarURL = gravatar.url(email);
+    const avatarURL =
+      "https://res.cloudinary.com/dwrqpvq7d/image/upload/v1718475448/avatar_dark_desktop_1x_h8kvio.png";
 
     const verificationToken = nanoid();
 
