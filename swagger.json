@@ -990,7 +990,8 @@
           },
           "avatarURL": {
             "type": "string",
-            "description": "User's avatar"
+            "description": "User's avatar",
+            "example": "https://res.cloudinary.com/dwrqpvq7d/image/upload/v1718475448/avatar_dark_desktop_1x_h8kvio.png"
           },
           "userId": {
             "type": "string",

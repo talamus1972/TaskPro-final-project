@@ -798,3 +798,4 @@ GET /link.html 200 375 - 4.086 ms
 GET /auth/google 302 868 - 0.997 ms
 POST /auth/register 201 382 - 925.824 ms
 POST /auth/login 200 382 - 190.258 ms
+POST /auth/register 201 423 - 1067.883 ms
