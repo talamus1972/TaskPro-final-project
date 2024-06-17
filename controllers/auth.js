@@ -3,7 +3,7 @@ import HttpError from "../helpers/HttpError.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 // import gravatar from "gravatar";
-import path from "node:path";
+// import path from "node:path";
 
 import { nanoid } from "nanoid";
 import { sendEmail } from "../helpers/index.js";
@@ -202,15 +202,24 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
-export const updateThemeUser = async (req, res, next) => {
+export const updateThemeAvatarUser = async (req, res, next) => {
   try {
     const { _id } = req.user;
-    const result = await User.findOneAndUpdate({ _id }, req.body, {
+
+    const { avatar, ...updateData } = req.body;
+
+    if (avatar) {
+      updateData.avatar = avatar;
+    }
+
+    const result = await User.findOneAndUpdate({ _id }, updateData, {
       new: true,
     });
+
     if (!result) {
-      throw HttpError(404, "Not Found");
+      throw new HttpError(404, "Not Found");
     }
+
     res.json(result);
   } catch (error) {
     next(error);

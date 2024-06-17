@@ -12,7 +12,7 @@ import {
   login,
   getCurrent,
   logout,
-  updateThemeUser,
+  updateThemeAvatarUser,
   verifyEmail,
   resendVerifyEmail,
   getUserData,
@@ -37,7 +37,7 @@ authRouter.patch(
   authenticate,
   isValidId,
   validateBody(updateUserSchemaThema),
-  updateThemeUser
+  updateThemeAvatarUser
 );
 
 authRouter.get("/data", authenticate, getUserData);
