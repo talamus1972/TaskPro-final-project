@@ -50,6 +50,8 @@ export const register = async (req, res, next) => {
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "24h" });
     await User.findByIdAndUpdate(newUser._id, { token });
 
+    const randomUserPassword = nanoid();
+
     res.status(201).json({
       token,
       email: newUser.email,
@@ -57,7 +59,7 @@ export const register = async (req, res, next) => {
       avatarURL: newUser.avatarURL,
       id: newUser._id,
       theme: newUser.theme,
-      password: newUser.password,
+      password: randomUserPassword,
     });
   } catch (error) {
     next(error);
@@ -148,6 +150,8 @@ export const login = async (req, res, next) => {
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "24h" });
     await User.findByIdAndUpdate(user._id, { token });
 
+    const randomUserPassword = nanoid();
+
     res.json({
       token,
       email: user.email,
@@ -155,7 +159,7 @@ export const login = async (req, res, next) => {
       avatarURL: user.avatarURL,
       id: user._id,
       theme: user.theme,
-      password: user.password,
+      password: randomUserPassword,
     });
   } catch (error) {
     console.error("Error in login:", error);
