@@ -32,7 +32,7 @@ authRouter.post("/login", validateBody(loginSchema), login);
 
 authRouter.post("/logout", authenticate, logout);
 
-authRouter.patch(
+authRouter.put(
   "/:id",
   authenticate,
   isValidId,
