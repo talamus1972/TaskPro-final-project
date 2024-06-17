@@ -86,6 +86,8 @@ export const googleRedirect = async (req, res) => {
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "24h" });
   await User.findByIdAndUpdate(newUser._id, { token });
 
+  const randomUserPassword = nanoid();
+
   res.status(201).json({
     token,
     email: newUser.email,
@@ -93,6 +95,6 @@ export const googleRedirect = async (req, res) => {
     avatarURL: newUser.avatarURL,
     id: newUser._id,
     theme: newUser.theme,
-    password: newUser.password,
+    password: randomUserPassword,
   });
 };
