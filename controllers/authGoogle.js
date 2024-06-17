@@ -4,7 +4,7 @@ import User from "../models/user.js";
 import HttpError from "../helpers/HttpError.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import gravatar from "gravatar";
+// import gravatar from "gravatar";
 import { nanoid } from "nanoid";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -67,7 +67,8 @@ export const googleRedirect = async (req, res) => {
 
   const hashPassword = await bcrypt.hash(password, 10);
 
-  const avatarURL = gravatar.url(email);
+  const avatarURL =
+    "https://res.cloudinary.com/dwrqpvq7d/image/upload/v1718475448/avatar_dark_desktop_1x_h8kvio.png";
 
   const verificationToken = nanoid();
 
