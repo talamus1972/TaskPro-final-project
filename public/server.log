@@ -799,3 +799,9 @@ GET /auth/google 302 868 - 0.997 ms
 POST /auth/register 201 382 - 925.824 ms
 POST /auth/login 200 382 - 190.258 ms
 POST /auth/register 201 423 - 1067.883 ms
+PUT /auth/666c03320b1106ff74295f04 400 73 - 21.287 ms
+PUT /auth/%22666c03320b1106ff74295f04%22 400 73 - 0.834 ms
+PUT /auth/666c03320b1106ff74295f04 200 585 - 165.203 ms
+PUT /auth/666c03320b1106ff74295f04 200 585 - 164.355 ms
+GET /auth/google 302 868 - 6.254 ms
+GET /auth/google 302 868 - 1.268 ms
