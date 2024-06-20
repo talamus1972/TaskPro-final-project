@@ -805,3 +805,5 @@ PUT /auth/666c03320b1106ff74295f04 200 585 - 165.203 ms
 PUT /auth/666c03320b1106ff74295f04 200 585 - 164.355 ms
 GET /auth/google 302 868 - 6.254 ms
 GET /auth/google 302 868 - 1.268 ms
+GET /auth/google 302 868 - 5.461 ms
+GET /auth/google 302 868 - 0.967 ms
