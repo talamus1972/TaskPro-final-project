@@ -2,7 +2,7 @@ import User from "../models/user.js";
 import HttpError from "../helpers/HttpError.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-// import gravatar from "gravatar";
+import gravatar from "gravatar";
 // import path from "node:path";
 
 import { nanoid } from "nanoid";
