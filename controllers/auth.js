@@ -2,7 +2,7 @@ import User from "../models/user.js";
 import HttpError from "../helpers/HttpError.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import gravatar from "gravatar";
+// import gravatar from "gravatar";
 // import path from "node:path";
 
 import { nanoid } from "nanoid";
@@ -51,7 +51,7 @@ export const register = async (req, res, next) => {
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "24h" });
     await User.findByIdAndUpdate(newUser._id, { token });
 
-    // const randomUserPassword = nanoid();
+    const randomUserPassword = nanoid();
 
     res.status(201).json({
       token,
