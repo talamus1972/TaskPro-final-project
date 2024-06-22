@@ -51,7 +51,7 @@ export const register = async (req, res, next) => {
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "24h" });
     await User.findByIdAndUpdate(newUser._id, { token });
 
-    const randomUserPassword = nanoid();
+    // const randomUserPassword = nanoid();
 
     res.status(201).json({
       token,
